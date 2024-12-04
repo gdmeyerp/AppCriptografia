@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Registro de Usuario</title>
+</head>
+<body>
+    <h1>Registro</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ formulario.as_p }}
+        <button type="submit">Registrarse</button>
+    </form>
+    <a href="{% url 'iniciar_sesion' %}">¿Ya tienes cuenta? Inicia sesión</a>
+</body>
+</html>
