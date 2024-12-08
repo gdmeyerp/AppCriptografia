@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        /* Estilos generales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+        }
+
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        header nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+        }
+
+        header nav a:hover {
+            color: #ff5757;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+        }
+
+        aside {
+            width: 200px;
+            background-color: #eaeaea;
+            padding: 20px;
+        }
+
+        aside a {
+            text-decoration: none;
+            display: block;
+            padding: 10px;
+            color: #007bff;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        aside a:hover {
+            background-color: #007bff;
+            color: white;
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #fff;
+            border-left: 1px solid #ccc;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        ul li {
+            margin-bottom: 15px;
+        }
+
+        ul li a {
+            text-decoration: none;
+            font-size: 1.2rem;
+            color: #007bff;
+            border: 1px solid #007bff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        ul li a:hover {
+            background-color: #007bff;
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Dashboard</h1>
+        <nav>
+            <a href="{% url 'core:profile' %}">Perfil</a>
+            <a href="#">Configuración</a>
+            <a href="{% url 'core:logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <div class="container">
+        <aside>
+            <a href="{% url 'dashboard:cifrar_metodos' %}">Criptografia Clasica</a>
+            <a href="{% url 'core:historial' %}">Historial</a>
+        </aside>
+        <main>
+            {% block content %}
+            <h1>Selecciona un Método de Cifrado</h1>
+            <ul>
+                {% for metodo in metodos %}
+                    <li>
+                        <a href="{% url 'dashboard:cargar_modulo' metodo.slug %}">
+                            {{ metodo.nombre }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% endblock %}
+        </main>
+    </div>
+    <footer>
+        &copy; 2024 Aplicación de Criptografía. <a href="#">Unal</a>.
+    </footer>
+</body>
+</html>
