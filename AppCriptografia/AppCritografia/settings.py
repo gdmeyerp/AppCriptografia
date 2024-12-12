@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'vigenere',
     'rsa',
     'sustitucion',
+    'multiplicativo'
 
 ]
 

@@ -5,6 +5,9 @@ from core.models import HistorialCifrado
 from vigenere.models import VigenereCifrado, VigenereDescifrado
 from sustitucion.models import SustitucionCifrado, SustitucionDescifrado
 
+from multiplicativo.models import MultiplicativoCifrado, MultiplicativoDescifrado
+
+
 @login_required
 def historial_dinamico(request):
     """Vista para mostrar las tablas dinámicas según el método y tipo de acción"""
@@ -22,6 +25,10 @@ def historial_dinamico(request):
         datos = SustitucionCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     elif tabla == 'sustitucion_descifrado':
         datos = SustitucionDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'multiplicativo_cifrado':
+        datos = MultiplicativoCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'multiplicativo_descifrado':
+        datos = MultiplicativoDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     else:
         datos = []
 
@@ -34,7 +41,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -62,7 +69,7 @@ def cifrar_metodos(request):
         {'nombre': 'Afin', 'slug': 'afin', 'descripcion': 'Método que usa funciones afines.'},
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
         {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None,
-         'descripcion': 'Cifra mensajes sustituyendo de acuerdo a una permutacion.'},
+         'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas

@@ -8,4 +8,5 @@ urlpatterns = [
     path('vigenere/', include('vigenere.urls', namespace='vigenere')),  # Usa namespace en vigenere
     path('modulo/rsa/', include('rsa.urls', namespace='rsa')),  # Incluye el módulo RSA
     path('sustitucion/', include('sustitucion.urls', namespace='sustitucion')),  # Usa namespace en sustitucion
+    path('multiplicativo/', include('multiplicativo.urls', namespace='multiplicativo')),  # Usa namespace en multiplicativo
 ]

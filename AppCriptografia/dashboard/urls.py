@@ -11,5 +11,6 @@ urlpatterns = [
     path('historial/', views.historial_dinamico, name='historial_dinamico'),  # Nueva vista dinámica
     path('modulo/rsa/', include('rsa.urls', namespace='rsa')),  # Incluye el módulo RSA
     path('modulo/sustitucion/', include('sustitucion.urls', namespace='sustitucion')),  # Incluye las rutas del módulo Sustitucion
+    path('modulo/multiplicativo/', include('multiplicativo.urls', namespace='multiplicativo')),  # Incluye las rutas del módulo Multiplicativo
 
 ]
