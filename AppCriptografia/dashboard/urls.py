@@ -10,5 +10,6 @@ urlpatterns = [
     path('modulo/vigenere/', include('vigenere.urls', namespace='vigenere')),  # Incluye las rutas del módulo Vigenère
     path('historial/', views.historial_dinamico, name='historial_dinamico'),  # Nueva vista dinámica
     path('modulo/rsa/', include('rsa.urls', namespace='rsa')),  # Incluye el módulo RSA
+    path('modulo/sustitucion/', include('sustitucion.urls', namespace='sustitucion')),  # Incluye las rutas del módulo Sustitucion
 
 ]

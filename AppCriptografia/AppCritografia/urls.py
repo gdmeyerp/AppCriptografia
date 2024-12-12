@@ -7,5 +7,5 @@ urlpatterns = [
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),  # Usa namespace en dashboard
     path('vigenere/', include('vigenere.urls', namespace='vigenere')),  # Usa namespace en vigenere
     path('modulo/rsa/', include('rsa.urls', namespace='rsa')),  # Incluye el módulo RSA
-
+    path('sustitucion/', include('sustitucion.urls', namespace='sustitucion')),  # Usa namespace en sustitucion
 ]

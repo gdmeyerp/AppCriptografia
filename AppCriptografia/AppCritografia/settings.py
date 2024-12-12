@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'dashboard',  # Módulo del dashboard
     'vigenere',
     'rsa',
+    'sustitucion',
 
 ]
 
@@ -80,12 +81,8 @@ WSGI_APPLICATION = 'AppCritografia.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'appcriptografia',  # Reemplaza con el nombre de tu base de datos
-        'USER': 'root',                 # Reemplaza con tu usuario de MySQL
-        'PASSWORD': 'mundial9409',          # Reemplaza con tu contraseña de MySQL
-        'HOST': '127.0.0.1',                  # Dirección del servidor (por defecto localhost)
-        'PORT': '3306',                       # Puerto de MySQL
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 

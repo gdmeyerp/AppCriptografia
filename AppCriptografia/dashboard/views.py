@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from core.models import HistorialCifrado
 
 from vigenere.models import VigenereCifrado, VigenereDescifrado
+from sustitucion.models import SustitucionCifrado, SustitucionDescifrado
 
 @login_required
 def historial_dinamico(request):
@@ -17,6 +18,10 @@ def historial_dinamico(request):
         datos = VigenereCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     elif tabla == 'vigenere_descifrado':
         datos = VigenereDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'sustitucion_cifrado':
+        datos = SustitucionCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'sustitucion_descifrado':
+        datos = SustitucionDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     else:
         datos = []
 
@@ -29,7 +34,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -56,6 +61,8 @@ def cifrar_metodos(request):
         {'nombre': 'RSA', 'slug': 'rsa', 'imagen': 'rsa.jpg', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
         {'nombre': 'Afin', 'slug': 'afin', 'descripcion': 'Método que usa funciones afines.'},
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
+        {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None,
+         'descripcion': 'Cifra mensajes sustituyendo de acuerdo a una permutacion.'},
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas
