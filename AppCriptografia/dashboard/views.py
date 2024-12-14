@@ -41,7 +41,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar', 'sustitucion', 'multiplicativo']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
