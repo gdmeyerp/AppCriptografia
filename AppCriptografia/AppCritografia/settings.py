@@ -42,7 +42,9 @@ INSTALLED_APPS = [
     'vigenere',
     'rsa',
     'sustitucion',
-    'multiplicativo'
+    'multiplicativo',
+    'hill',
+    'permutacion'
 
 ]
 
