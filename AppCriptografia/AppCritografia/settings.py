@@ -135,8 +135,8 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / 'static',  # Carpeta global para archivos estáticos
 
-    os.path.join(BASE_DIR, "dashboard/static"),
-    os.path.join(BASE_DIR, "vigenere/static"),
+    #os.path.join(BASE_DIR, "dashboard/static"),
+    #os.path.join(BASE_DIR, "vigenere/static"),
 ]
 
 
