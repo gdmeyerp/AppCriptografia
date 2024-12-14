@@ -133,8 +133,10 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Define where Django should look for additional static files (if needed)
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "dashboard/static"),
-#    os.path.join(BASE_DIR, "vigenere/static"),
+    BASE_DIR / 'static',  # Carpeta global para archivos estáticos
+
+    #os.path.join(BASE_DIR, "dashboard/static"),
+    #os.path.join(BASE_DIR, "vigenere/static"),
 ]
 
 
