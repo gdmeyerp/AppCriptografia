@@ -44,6 +44,7 @@ def descifrar_permutacion_view(request):
         if mensaje_cifrado and clave:
             try:
                 mensaje_descifrado = descifrar_permutacion(mensaje_cifrado, clave)
+
                 PermutacionDescifrado.objects.create(
                     usuario=request.user,
                     mensaje_cifrado=mensaje_cifrado,
