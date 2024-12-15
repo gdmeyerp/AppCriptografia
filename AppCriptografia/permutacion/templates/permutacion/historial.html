@@ -1,7 +1,7 @@
-<h1>Historial - Hill</h1>
+<h1>Historial - Permutación</h1>
 
 <!-- Selector para cambiar entre las tablas -->
-<form method="get" action="{% url 'hill:historial' %}">
+<form method="get" action="{% url 'permutacion:historial' %}">
     <label for="tabla">Seleccionar Tabla:</label>
     <select name="tabla" id="tabla" onchange="this.form.submit()">
         <option value="cifrado" {% if tabla_seleccionada == "cifrado" %}selected{% endif %}>Cifrado</option>
