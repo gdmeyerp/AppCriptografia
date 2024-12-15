@@ -41,7 +41,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo','permutacion','hill']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -68,8 +68,10 @@ def cifrar_metodos(request):
         {'nombre': 'RSA', 'slug': 'rsa', 'imagen': 'rsa.jpg', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
         {'nombre': 'Afin', 'slug': 'afin', 'descripcion': 'Método que usa funciones afines.'},
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
-        {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None,
-         'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
+        {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None, 'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
+        {'nombre': 'Hill', 'slug': 'hill', 'imagen': None, 'descripcion': 'Cifrado basado en transformaciones lineales.'},
+        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'},
+        
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas
