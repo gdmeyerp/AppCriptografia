@@ -1,0 +1,10 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<h1>Bienvenido al módulo Hill</h1>
+<p>Selecciona una acción:</p>
+<ul>
+    <li><a href="{% url 'hill:cifrar' %}">Cifrar Mensaje</a></li>
+    <li><a href="{% url 'hill:descifrar' %}">Descifrar Mensaje</a></li>
+</ul>
+{% endblock %}
