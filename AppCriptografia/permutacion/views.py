@@ -31,9 +31,9 @@ def cifrar_permutacion_view(request):
                 messages.error(request, f"Error al cifrar el mensaje: {e}")
         else:
             messages.error(request, "El mensaje y la clave son obligatorios.")
-    return render(request, "vigenere/cifrar.html", {"mensaje_cifrado": mensaje_cifrado})
+    return render(request, "permutacion/cifrar.html", {"mensaje_cifrado": mensaje_cifrado})
 
-# Vista para descifrar un mensaje con el método Vigenère
+# Vista para descifrar un mensaje con el método Permutación
 @login_required
 def descifrar_permutacion_view(request):
     mensaje_descifrado = None
