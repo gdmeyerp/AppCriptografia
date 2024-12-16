@@ -13,4 +13,5 @@ urlpatterns = [
     path('permutacion/', include('permutacion.urls', namespace='permutacion')),  # Usa namespace en permutacion
     path('indice-coincidencia/', include('indiceCoincidencia.urls')), 
 
+    path('AnalisisBrauer/', include('AnalisisBrauer.urls', namespace='AnalisisBrauer')),  # Usa namespace en permutacion
 ]
