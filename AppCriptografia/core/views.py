@@ -30,7 +30,7 @@ def login_view(request):
 
 def logout_view(request):
     logout(request)
-    return redirect('login')
+    return redirect('core:login')
 
 def register_view(request):
     if request.method == 'POST':
@@ -59,7 +59,7 @@ def register_view(request):
         # Crear el usuario
         User.objects.create_user(username=username, email=email, password=password)
         messages.success(request, "Registro exitoso. Ahora puedes iniciar sesión.")
-        return redirect('login')
+        return redirect('core:login')
 
     return render(request, 'core/register.html')
 
