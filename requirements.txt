@@ -15,5 +15,4 @@ typing_extensions==4.12.2
 urllib3==2.2.3
 numpy==2.0.2
 networkx==3.2.1
-matplotlib==3.9.4
 pygraphviz==1.11

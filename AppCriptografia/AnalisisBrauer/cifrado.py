@@ -1,6 +1,5 @@
 import numpy as np
 import networkx as nx
-import matplotlib.pyplot as plt
 from networkx.drawing.nx_agraph import to_agraph
 
 
