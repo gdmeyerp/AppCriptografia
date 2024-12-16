@@ -11,4 +11,6 @@ urlpatterns = [
     path('multiplicativo/', include('multiplicativo.urls', namespace='multiplicativo')),  # Usa namespace en multiplicativo
     path('hill/', include('hill.urls', namespace='hill')),  # Usa namespace en hill
     path('permutacion/', include('permutacion.urls', namespace='permutacion')),  # Usa namespace en permutacion
+    path('indice-coincidencia/', include('indiceCoincidencia.urls')), 
+
 ]

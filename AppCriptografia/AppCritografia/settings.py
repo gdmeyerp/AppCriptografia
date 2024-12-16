@@ -46,7 +46,8 @@ INSTALLED_APPS = [
     'sustitucion',
     'multiplicativo',
     'hill',
-    'permutacion'
+    'permutacion',
+    'indiceCoincidencia',
 
 ]
 
