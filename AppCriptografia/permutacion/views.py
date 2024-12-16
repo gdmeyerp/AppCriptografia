@@ -1,8 +1,8 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import VigenereCifrado, VigenereDescifrado
-from .cifrado import cifrar_vigenere, descifrar_vigenere
+from .models import PermutacionCifrado, PermutacionDescifrado
+from .cifrado import cifrar_permutacion, descifrar_permutacion
 
 # Vista principal del módulo de Cifrado de Permutación
 @login_required
@@ -31,9 +31,9 @@ def cifrar_permutacion_view(request):
                 messages.error(request, f"Error al cifrar el mensaje: {e}")
         else:
             messages.error(request, "El mensaje y la clave son obligatorios.")
-    return render(request, "vigenere/cifrar.html", {"mensaje_cifrado": mensaje_cifrado})
+    return render(request, "permutacion/cifrar.html", {"mensaje_cifrado": mensaje_cifrado})
 
-# Vista para descifrar un mensaje con el método Vigenère
+# Vista para descifrar un mensaje con el método Permutación
 @login_required
 def descifrar_permutacion_view(request):
     mensaje_descifrado = None
@@ -43,7 +43,8 @@ def descifrar_permutacion_view(request):
 
         if mensaje_cifrado and clave:
             try:
-                mensaje_descifrado = descifrar_vigenere(mensaje_cifrado, clave)
+                mensaje_descifrado = descifrar_permutacion(mensaje_cifrado, clave)
+
                 PermutacionDescifrado.objects.create(
                     usuario=request.user,
                     mensaje_cifrado=mensaje_cifrado,

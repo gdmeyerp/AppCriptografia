@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from core.models import HistorialCifrado
 
@@ -6,6 +6,9 @@ from vigenere.models import VigenereCifrado, VigenereDescifrado
 from sustitucion.models import SustitucionCifrado, SustitucionDescifrado
 
 from multiplicativo.models import MultiplicativoCifrado, MultiplicativoDescifrado
+
+from hill.models import HillCifrado, HillDescifrado
+from permutacion.models import PermutacionCifrado, PermutacionDescifrado
 
 
 @login_required
@@ -29,6 +32,14 @@ def historial_dinamico(request):
         datos = MultiplicativoCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     elif tabla == 'multiplicativo_descifrado':
         datos = MultiplicativoDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'hill_cifrado':
+        datos = HillCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'hill_descifrado':
+        datos = HillDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'permutacion_cifrado':
+        datos = PermutacionCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'permutacion_descifrado':
+        datos = PermutacionDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     else:
         datos = []
 
@@ -41,7 +52,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo','hill','permutacion']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -70,7 +81,7 @@ def cifrar_metodos(request):
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
         {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None, 'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
         {'nombre': 'Hill', 'slug': 'hill', 'imagen': None, 'descripcion': 'Cifrado basado en transformaciones lineales.'},
-        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'},
+        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'}
         
     ]
 
