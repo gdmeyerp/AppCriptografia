@@ -11,12 +11,9 @@ urlpatterns = [
     path('multiplicativo/', include('multiplicativo.urls', namespace='multiplicativo')),  # Usa namespace en multiplicativo
     path('hill/', include('hill.urls', namespace='hill')),  # Usa namespace en hill
     path('permutacion/', include('permutacion.urls', namespace='permutacion')),  # Usa namespace en permutacion
-<<<<<<< HEAD
     path('indice-coincidencia/', include('indiceCoincidencia.urls')), 
 
     path('AnalisisBrauer/', include('AnalisisBrauer.urls', namespace='AnalisisBrauer')),  # Usa namespace en permutacion
-=======
     path('afin/', include('afin.urls', namespace='afin')),  # Usa namespace en afín
     path('desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento'))  # Usa namespace en desplazamiento
->>>>>>> edison
 ]
