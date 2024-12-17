@@ -12,12 +12,12 @@ Cuando abras la app por primera vez, serás recibido con la **Pantalla de Inicio
 - **Iniciar sesión**: Si ya tienes una cuenta, ingresa tus credenciales y haz clic en **Iniciar sesión** para acceder a la app.
 - **Registrarse**: Si no tienes una cuenta, haz clic en **Registrarse** para crear una nueva cuenta.
 
-![Pantalla de Inicio](image-placeholder.png)
+![Pantalla de Inicio](ScreenshotsApp/login.png)
 
 ### Pantalla de Registro
 Si eliges la opción de **Registrarse**, serás redirigido a una página donde podrás ingresar tu nombre de usuario, correo electrónico y contraseña, para crear una nueva cuenta.
 
-![Pantalla de Registro](image-placeholder.png)
+![Pantalla de Registro](ScreenshotsApp/registro.png)
 
 ---
 
@@ -33,7 +33,7 @@ En la esquina superior derecha del **Dashboard**, encontrarás el **Menú del Ba
 - 🛠 **Configuración**: Cambia la configuración de la app.
 - ❌**Cerrar sesión**: Cierra tu sesión y regresa a la página de login.
   
-![Pantalla del Dashboard](image-placeholder.png)
+![Pantalla del Dashboard](ScreenshotsApp/dashboard.png)
 
 ### Menú del Dashboard:
 - **Criptografía Clásica**: Explora varios métodos de cifrado.
