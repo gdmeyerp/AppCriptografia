@@ -232,7 +232,7 @@ Los resultados muestran la siguiente información:
 - Secuencias de Sucesores
 - Imagen del Carcaj de Brauer
 
-![Análisis Brauer](image-placeholder.png)
+![Análisis Brauer](ScreenshotsApp/brauer.png)
 
 ---
 
