@@ -13,6 +13,8 @@ urlpatterns = [
     path('modulo/sustitucion/', include('sustitucion.urls', namespace='sustitucion')),  # Incluye las rutas del módulo Sustitucion
     path('modulo/multiplicativo/', include('multiplicativo.urls', namespace='multiplicativo')),  # Incluye las rutas del módulo Multiplicativo
     path('modulo/hill/', include('hill.urls', namespace='hill')),  # Incluye las rutas del módulo Hill
-    path('modulo/permutacion/', include('permutacion.urls', namespace='permutacion'))  # Incluye las rutas del módulo Permutación
+    path('modulo/permutacion/', include('permutacion.urls', namespace='permutacion')),  # Incluye las rutas del módulo Permutación
+    path('modulo/afin/', include('afin.urls', namespace='afin')),  # Incluye las rutas del módulo Afín
+    path('modulo/desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento'))  # Incluye las rutas del módulo Desplazamiento
 
 ]

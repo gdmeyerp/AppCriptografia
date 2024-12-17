@@ -10,6 +10,9 @@ from multiplicativo.models import MultiplicativoCifrado, MultiplicativoDescifrad
 from hill.models import HillCifrado, HillDescifrado
 from permutacion.models import PermutacionCifrado, PermutacionDescifrado
 
+from afin.models import AfinCifrado, AfinDescifrado
+from desplazamiento.models import DesplazamientoCifrado, DesplazamientoDescifrado
+
 
 @login_required
 def historial_dinamico(request):
@@ -40,6 +43,14 @@ def historial_dinamico(request):
         datos = PermutacionCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     elif tabla == 'permutacion_descifrado':
         datos = PermutacionDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'afin_cifrado':
+        datos = AfinCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'afin_descifrado':
+        datos = AfinDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'desplazamiento_cifrado':
+        datos = DesplazamientoCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'desplazamiento_descifrado':
+        datos = DesplazamientoDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     else:
         datos = []
 
@@ -52,7 +63,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo','hill','permutacion']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -81,7 +92,9 @@ def cifrar_metodos(request):
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
         {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None, 'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
         {'nombre': 'Hill', 'slug': 'hill', 'imagen': None, 'descripcion': 'Cifrado basado en transformaciones lineales.'},
-        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'}
+        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'},
+        {'nombre': 'Afín', 'slug': 'afin', 'imagen': None, 'descripcion': 'Cifrado basado en combinaciones lineales de letras.'},
+        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': None, 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'}
         
     ]
 

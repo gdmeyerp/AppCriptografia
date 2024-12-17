@@ -46,7 +46,9 @@ INSTALLED_APPS = [
     'sustitucion',
     'multiplicativo',
     'hill',
-    'permutacion'
+    'permutacion',
+    'afin',
+    'desplazamiento'
 
 ]
 
