@@ -25,16 +25,6 @@ Si eliges la opción de **Registrarse**, serás redirigido a una página donde p
 
 Una vez que inicies sesión, serás redirigido al **Dashboard**. Aquí podrás elegir entre diferentes opciones para explorar los métodos criptográficos o realizar análisis avanzados.
 
-### Menú del Dashboard:
-- **Criptografía Clásica**: Explora varios métodos de cifrado.
-- **Índice de Coincidencia**: Analiza el texto para encontrar patrones y coincidencias.
-- **Análisis de Brauer**: Un análisis profundo de los cifrados criptográficos.
-- **Historial**: Revisa el historial de actividad.
-
-![Pantalla del Dashboard](image-placeholder.png)
-
----
-
 ### 🖱 **Menú del Banner (Esquina superior derecha)**
 
 En la esquina superior derecha del **Dashboard**, encontrarás el **Menú del Banner**, que te permite acceder rápidamente a las siguientes opciones:
@@ -42,8 +32,14 @@ En la esquina superior derecha del **Dashboard**, encontrarás el **Menú del Ba
 - 👤**Perfil**: Accede a tu perfil de usuario para ver tu información personal.
 - 🛠 **Configuración**: Cambia la configuración de la app.
 - ❌**Cerrar sesión**: Cierra tu sesión y regresa a la página de login.
+  
+![Pantalla del Dashboard](image-placeholder.png)
 
-![Menú del Banner](image-placeholder.png)
+### Menú del Dashboard:
+- **Criptografía Clásica**: Explora varios métodos de cifrado.
+- **Índice de Coincidencia**: Analiza el texto para encontrar patrones y coincidencias.
+- **Análisis de Brauer**: Un análisis profundo de los cifrados criptográficos.
+- **Historial**: Revisa el historial de actividad.
 
 ---
 
@@ -61,6 +57,10 @@ La sección de **Criptografía Clásica** es donde podrás explorar diversos mé
 - **Cifrado de César o Desplazamiento**
 
 Haz clic en el método de cifrado que deseas explorar, y serás redirigido a una pantalla con opciones para **Cifrar** y **Descifrar**.
+
+![Criptografia Clasica](image-placeholder.png)
+
+---
 
 ### 🔑 **Cifrado Vigenère**
 Vigenère es un método de cifrado de texto alfabético utilizando una forma simple de sustitución polialfabética.
@@ -247,4 +247,4 @@ La sección de **Historial** te permite acceder y revisar las actividades pasada
 
 ---
 
-¡Gracias por usar la App de Criptografía! Esperamos que disfrutes explorando el mundo del cifrado y el análisis criptográfico.
+¡Gracias por usar AppCriptografia! Esperamos que disfrutes explorando el mundo del cifrado y el análisis criptográfico.
