@@ -47,13 +47,10 @@ INSTALLED_APPS = [
     'multiplicativo',
     'hill',
     'permutacion',
-<<<<<<< HEAD
     'indiceCoincidencia',
-    'AnalisisBrauer'
-=======
+    'AnalisisBrauer',
     'afin',
     'desplazamiento'
->>>>>>> edison
 
 ]
 
