@@ -1,0 +1,18 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<h2>Cifrar Mensaje</h2>
+<form method="POST" action="{% url 'hill:cifrar' %}">
+    {% csrf_token %}
+    <label for="mensaje">Mensaje:</label><br>
+    <textarea name="mensaje" id="mensaje" required></textarea><br>
+    <label for="clave">Clave:</label><br>
+    <input type="text" name="clave" id="clave" required><br>
+    <text>(matriz con valores separados por espacios y filas separadas por comas, ej: 11 8,3 7)</text><br><br>
+    <button type="submit">Cifrar</button>
+</form>
+
+{% if mensaje_cifrado %}
+    <p><strong>Mensaje Cifrado:</strong> {{ mensaje_cifrado }}</p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Dashboard{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <div class="header-left">
+            <h1>Dashboard</h1>
+        </div>
+        <nav class="header-right">
+            <a href="{% url 'core:profile' %}">Perfil</a>
+            <a href="#">Configuración</a>
+            <a href="{% url 'core:logout' %}">Cerrar Sesión</a>
+        </nav>
+    </header>
+    <div class="container">
+        <aside>
+            <a href="{% url 'dashboard:cifrar_metodos' %}">Criptografia Clasica</a>
+            <a href="{% url 'indiceCoincidencia:indice_coincidencia' %}">Indice de coindicencia </a>
+            <a href="{% url 'AnalisisBrauer:index' %}">Analisis de Brauer.</a>
+
+            <a href="{% url 'core:historial' %}">Historial</a>
+        </aside>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+    </div>
+    <footer>
+        &copy; 2024 Aplicación de Criptografía. <a href="#">Unal</a>.
+    </footer>
+</body>
+</html>

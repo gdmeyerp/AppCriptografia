@@ -1,0 +1,28 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<h2>Analisis de Brauer para un Mensaje</h2>
+<form method="POST" action="{% url 'AnalisisBrauer:analisis' %}">
+    {% csrf_token %}
+    <label for="mensaje">Mensaje:</label><br>
+    <textarea name="mensaje" id="mensaje" required></textarea><br>
+    <label for="longitud">Longitud de las particiones:</label><br>
+    <input type="text" name="longitud" id="longiutud" required><br><br>
+    <button type="submit">Ejecutar Analisis</button>
+</form>
+
+{% if dimension_centro_val %}
+    <p><strong>Dimension del Centro:</strong> {{ dimension_centro_val }}</p>
+{% endif %}
+{% if dimension_val %}
+    <p><strong>Dimension:</strong> {{ dimension_val }}</p>
+{% endif %}
+{% if sucesiones %}
+    <p><strong>Secuencias de Sucesores:</strong> {{ sucesiones }}</p>
+{% endif %}
+{% if image %}
+<p><strong>Carcaj de Brauer:</strong></p>
+    <img src="{{image}}" alt="Carcaj"/>
+{% endif %}
+{% endblock %}

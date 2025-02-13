@@ -1,0 +1,57 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+    <h1>Calculadora de Índice de Coincidencia</h1>
+    <form method="POST" action="">
+        {% csrf_token %}
+        <label for="texto">Texto cifrado:</label><br>
+        <textarea name="texto" rows="5" cols="40" placeholder="Introduce el texto cifrado"></textarea><br><br>
+        
+        <label for="longitud_max">Longitud máxima a probar:</label><br>
+        <input type="number" name="longitud_max" min="2" placeholder="Ejemplo: 4"><br><br>
+        
+        <button type="submit">Calcular</button>
+    </form>
+
+    {% if resultados %}
+        <h2>Resultados del Análisis</h2>
+        <p><strong>Texto:</strong> {{ texto }}</p>
+        <p><strong>Índice de Coincidencia (Friedman):</strong> {{ ic_friedman }}</p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Longitud de Clave</th>
+                    <th>Bloques</th>
+                    <th>IC por Bloque</th>
+                    <th>Similitud por Bloque</th>
+                    <th>IC Promedio</th>
+                    <th>Similitud Promedio</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for resultado in resultados %}
+                <tr>
+                    <td>{{ resultado.longitud }}</td>
+                    <td>
+                        {% for bloque in resultado.bloques %}
+                            <div>{{ bloque }}</div>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for ic in resultado.ic_bloques %}
+                            <div>{{ ic }}</div>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% for sim in resultado.similitud_bloques %}
+                            <div>{{ sim }}</div>
+                        {% endfor %}
+                    </td>
+                    <td>{{ resultado.ic_promedio }}</td>
+                    <td>{{ resultado.similitud_promedio }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+{% endblock %}
