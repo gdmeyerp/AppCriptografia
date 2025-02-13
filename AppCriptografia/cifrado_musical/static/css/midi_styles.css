@@ -1,0 +1,52 @@
+/* Estilos exclusivos para la vista MIDI */
+#midi-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+#midi-header {
+    text-align: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+#midi-uploader {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#midi-player {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#midi-notes {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 5px;
+    white-space: pre-wrap;
+    font-family: "Courier New", monospace;
+    overflow-y: auto;
+    max-height: 300px;
+}
+
+/* 🎼 Sección de la partitura con scroll completo */
+#midi-sheet-container {
+    max-height: 600px;  /* Ajusta según necesidad */
+    overflow-y: auto;  /* Permite desplazamiento vertical */
+    border: 1px solid #ccc;
+    background: #ffffff;
+    padding: 15px;
+}
+
+/* Ajustar el tamaño del SVG */
+#midi-sheet {
+    width: 100%;
+    max-width: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;  /* Asegura que las filas de pentagramas se acomoden */
+}

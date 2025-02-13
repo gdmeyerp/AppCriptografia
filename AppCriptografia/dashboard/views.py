@@ -12,6 +12,7 @@ from permutacion.models import PermutacionCifrado, PermutacionDescifrado
 
 from afin.models import AfinCifrado, AfinDescifrado
 from desplazamiento.models import DesplazamientoCifrado, DesplazamientoDescifrado
+from cifrado_musical.models import PartituraCifrada, PartituraDescifrada
 
 
 @login_required
@@ -51,6 +52,10 @@ def historial_dinamico(request):
         datos = DesplazamientoCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     elif tabla == 'desplazamiento_descifrado':
         datos = DesplazamientoDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'cifrado_musical_cifrado':
+        datos = PartituraCifrada.objects.filter(usuario=request.user).order_by('-fecha_creacion')
+    elif tabla == 'cifrado_musical_descifrado':
+        datos = PartituraDescifrada.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     else:
         datos = []
 
@@ -63,7 +68,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','11', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -93,8 +98,9 @@ def cifrar_metodos(request):
         {'nombre': 'Hill', 'slug': 'hill', 'imagen': None, 'descripcion': 'Cifrado basado en transformaciones lineales.'},
         {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'},
         {'nombre': 'Afín', 'slug': 'afin', 'imagen': None, 'descripcion': 'Cifrado basado en combinaciones lineales de letras.'},
-        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': None, 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'}
-        
+        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': None, 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
+        {'nombre': 'Cifrado Musical', 'slug': 'cifrado_musical', 'imagen': 'musical.jpg', 'descripcion': 'Cifra partituras musicales alterando sus notas.'},
+
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas

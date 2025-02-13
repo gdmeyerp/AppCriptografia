@@ -50,8 +50,8 @@ INSTALLED_APPS = [
     'indiceCoincidencia',
     'AnalisisBrauer',
     'afin',
-    'desplazamiento'
-
+    'desplazamiento',
+    'cifrado_musical',
 ]
 
 MIDDLEWARE = [
@@ -142,6 +142,15 @@ STATICFILES_DIRS = [
     #os.path.join(BASE_DIR, "dashboard/static"),
     #os.path.join(BASE_DIR, "vigenere/static"),
 ]
+
+
+MEDIA_ROOT = BASE_DIR / 'media'
+
+MEDIAFILES_DIRS = [
+    os.path.join(BASE_DIR, "media/cifrados"),
+    os.path.join(BASE_DIR, "media/descifrados"),
+]
+
 
 
 # Default primary key field type

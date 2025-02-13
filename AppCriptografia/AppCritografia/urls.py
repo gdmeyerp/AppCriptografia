@@ -15,5 +15,7 @@ urlpatterns = [
 
     path('AnalisisBrauer/', include('AnalisisBrauer.urls', namespace='AnalisisBrauer')),  # Usa namespace en permutacion
     path('afin/', include('afin.urls', namespace='afin')),  # Usa namespace en afín
-    path('desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento'))  # Usa namespace en desplazamiento
+    path('desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento')),  # Usa namespace en desplazamiento
+    path('cifrado_musical/', include('cifrado_musical.urls')),
+
 ]
