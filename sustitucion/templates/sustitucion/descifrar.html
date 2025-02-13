@@ -1,0 +1,18 @@
+{% extends "dashboard/index.html" %}
+
+
+{% block content %}
+<h2>Descifrar Mensaje</h2>
+<form method="POST">
+    {% csrf_token %}
+    <label for="mensaje_cifrado">Mensaje Cifrado:</label><br>
+    <textarea name="mensaje_cifrado" id="mensaje_cifrado" required></textarea><br>
+    <label for="permutacion">Permutacion:</label><br>
+    <input type="text" name="permutacion" id="permutacion" required><br><br>
+    <button type="submit">Descifrar</button>
+</form>
+
+{% if mensaje_descifrado %}
+    <p><strong>Mensaje Descifrado:</strong> {{ mensaje_descifrado }}</p>
+{% endif %}
+{% endblock %}
