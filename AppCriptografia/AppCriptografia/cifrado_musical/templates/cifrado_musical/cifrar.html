@@ -1,0 +1,197 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<!-- Incluir estilos exclusivos -->
+<link rel="stylesheet" type="text/css" href="{% static 'css/midi_styles.css' %}">
+
+<!-- ========================================= -->
+<!-- 2. CARGA Y VISUALIZACIÓN DEL MIDI -->
+<!-- ========================================= -->
+<div id="midi-container">
+  <h1 id="midi-header"><i class="fas fa-music"></i> Cargar, Visualizar y Encriptar MIDI</h1>
+  
+
+  <!-- Reproductor MIDI -->
+  <div class="card shadow" id="midi-player" style="display:none;">
+    <div class="card-header bg-success text-white text-center">
+      <h5 class="mb-0"><i class="fas fa-play-circle"></i> Reproductor MIDI</h5>
+    </div>
+    <div class="card-body text-center">
+      <button id="play-midi" class="btn btn-primary">▶ Reproducir</button>
+      <button id="stop-midi" class="btn btn-danger">⏹ Detener</button>
+    </div>
+  </div>
+
+
+  
+  <!-- Notación de Notas (Originales) -->
+  <div class="card shadow" id="midi-notes-container" style="display:none;">
+    <div class="card-header bg-info text-white text-center">
+      <h5 class="mb-0"><i class="fas fa-list-music"></i> Notación de Notas (Originales)</h5>
+    </div>
+    <div class="card-body">
+      <p id="midi-notes"></p>
+    </div>
+  </div>
+  
+
+<!-- ========================================= -->
+<!-- 1. MÓDULO DE ENCRIPTACIÓN (selección y parámetros) -->
+<!-- ========================================= -->
+<div id="midi-encryption-container" class="card shadow mb-4" style="display:block;">
+  <div class="card-header bg-secondary text-white text-center">
+    <h5 class="mb-0"><i class="fas fa-user-secret"></i> Seleccionar Método de Encriptación</h5>
+  </div>
+  <div class="card-body">
+    <!-- Selección del método -->
+    <div class="mb-3">
+      <label for="metodoEncriptacion" class="form-label">Método:</label>
+      <select id="metodoEncriptacion" class="form-select">
+        <option value="desplazamiento">Desplazamiento</option>
+        <option value="retroceso">Retroceso</option>
+        <option value="inversion">Inversión</option>
+      </select>
+    </div>
+    
+    <!-- Parámetros para Desplazamiento -->
+    <div id="parametros-desplazamiento" class="mb-3" style="display:none;">
+      <label for="claveDesplazamiento" class="form-label">Clave (Semitonos):</label>
+      <input type="number" id="claveDesplazamiento" class="form-control" value="3" min="-24" max="24">
+    </div>
+    <!-- Parámetros para Inversión -->
+    <div id="parametros-inversion" class="mb-3" style="display:none;">
+      <label for="pivotNote" class="form-label">Nota Pivote:</label>
+      <input type="text" id="pivotNote" class="form-control" value="C4">
+    </div>
+    <div class="card-header bg-primary text-white text-center">
+      <h5 class="mb-0"><i class="fas fa-upload"></i> Subir Archivo MIDI</h5>
+    </div>
+    <div class="card-body text-center">
+      <!-- Al seleccionar un archivo se llama a handleFileAndEncrypt -->
+      <input type="file" id="archivo-midi" accept=".mid" class="form-control" onchange="handleFileAndEncrypt(event)">
+    </div>
+
+    <!-- Reproductor MIDI -->
+    <div class="card shadow" id="midi-player" style="display:none;">
+      <div class="card-header bg-success text-white text-center">
+        <h5 class="mb-0"><i class="fas fa-play-circle"></i> Reproductor MIDI</h5>
+      </div>
+      <div class="card-body text-center">
+        <button id="play-midi" class="btn btn-primary">▶ Reproducir</button>
+        <button id="stop-midi" class="btn btn-danger">⏹ Detener</button>
+      </div>
+    </div>
+    <!-- Notación de Notas (Encriptadas) -->
+    <div class="card shadow" id="midi-notes-encriptadas-container" style="display:none;">
+        <div class="card-header bg-info text-white text-center">
+          <h5 class="mb-0"><i class="fas fa-lock"></i> Notación de Notas (Encriptadas)</h5>
+        </div>
+        <div class="card-body">
+          <p id="midi-notes-encriptadas"></p>
+        </div>
+        <div id="midi-encryption-container"></div>    
+    </div>
+    <div id="midi-sheet"></div>
+
+
+    <div id="midi-encryption-container"></div>    
+    <div id="midi-sheet"></div>
+    <!-- Botón para descargar el MIDI encriptado -->
+    <div class="container mt-3 text-center">
+      <button id="btn-descargar-midi" class="btn btn-primary">Descargar MIDI Encriptado</button>
+    </div>
+    
+    <!-- Contenedor para la partitura (si usas VexFlow) -->
+    <div id="midi-sheet" class="mt-4"></div>  
+    </div>
+    <!-- Botón para enviar notas al backend -->
+    <div class="container mt-3 text-center">
+      <button id="btn-enviar-notas" class="btn btn-info">
+        <i class="fas fa-cloud-upload"></i> Descargar MIDI Encriptado
+      </button>
+    </div>
+
+
+</div>
+
+<!-- ========================================= -->
+<!-- 4. SCRIPTS Y LIBRERÍAS EXTERNAS -->
+<!-- ========================================= -->
+<!-- Reemplazar las dos líneas anteriores por esta -->
+<script src="https://unpkg.com/jsmidgen@0.2.3/jsmidgen.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vexflow@4.2.2/build/cjs/vexflow.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.36/Tone.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@tonejs/midi"></script>
+
+<script defer src="{% static 'js/midi_visualization.js' %}"></script>
+<script defer src="{% static 'js/midi_encryption.js' %}"></script>
+<script defer src="{% static 'js/midi_handler.js' %}"></script>
+<script src="{% static 'js/midi_reproduction.js' %}"></script>
+<script src="{% static 'js/midi_backend.js' %}"></script>
+
+<!-- Control de eventos para el reproductor MIDI Encriptado -->
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("btn-enviar-notas").addEventListener("click", function() {
+    enviarNotasEncriptadas();
+  });
+});
+
+</script>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    // Mostrar/ocultar parámetros de encriptación
+    const metodoSelect = document.getElementById("metodoEncriptacion");
+    const btnEnviarNotas = document.getElementById("btn-enviar-notas");
+    if (btnEnviarNotas) {
+      btnEnviarNotas.addEventListener("click", function() {
+        enviarNotasEncriptadas();
+      });
+    }
+    if (metodoSelect) {
+      metodoSelect.addEventListener("change", function() {
+        const divDesplazamiento = document.getElementById("parametros-desplazamiento");
+        const divInversion = document.getElementById("parametros-inversion");
+        if (divDesplazamiento) divDesplazamiento.style.display = "none";
+        if (divInversion) divInversion.style.display = "none";
+        if (this.value === "desplazamiento") {
+          if (divDesplazamiento) divDesplazamiento.style.display = "block";
+        } else if (this.value === "inversion") {
+          if (divInversion) divInversion.style.display = "block";
+        }
+      });
+      metodoSelect.dispatchEvent(new Event("change"));
+    }
+    
+    // Evento para reproducir el MIDI encriptado (nuevo reproductor)
+    document.getElementById("play-midi-encriptado").addEventListener("click", async function () {
+      if (window.midiEncriptado) {
+        document.getElementById("midi-player-encriptado").style.display = "block";
+        reproducirMidiEncriptadoNuevo(window.midiEncriptado);
+      } else {
+        alert("Primero carga y encripta un archivo MIDI.");
+      }
+    });
+    
+    // Evento para detener la reproducción del MIDI encriptado
+    document.getElementById("stop-midi-encriptado").addEventListener("click", function () {
+      detenerMidiEncriptadoNuevo();
+    });
+    
+    // Evento para descargar el MIDI encriptado
+    document.getElementById("btn-descargar-midi").addEventListener("click", function() {
+      if (window.midiEncriptado) {
+        const midiData = crearArchivoMidi(window.midiEncriptado);
+        if (midiData) {
+          descargarMidi(midiData);
+        }
+      } else {
+        alert("Primero carga y encripta un archivo MIDI.");
+      }
+    });
+  });
+  </script>
+
+{% endblock %}
