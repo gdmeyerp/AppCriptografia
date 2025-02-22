@@ -1,0 +1,35 @@
+<!-- templates/cifrado_musical/descifrar.html -->
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Descifrar Partitura</h1>
+    
+    <form method="POST" enctype="multipart/form-data" class="text-center">
+        {% csrf_token %}
+        <label for="archivo">Subir archivo MIDI cifrado:</label>
+        <input type="file" name="archivo" accept=".mid" required class="form-control">
+        
+        <label for="clave">Clave de descifrado:</label>
+        <input type="number" name="clave" value="3" class="form-control">
+        
+        <button type="submit" class="btn btn-success mt-3">Descifrar</button>
+    </form>
+
+    {% if archivo_descifrado %}
+    <div class="mt-4 text-center">
+        <h3>Escuchar Archivo Descifrado:</h3>
+        <button id="play-descifrado" class="btn btn-info">Reproducir Descifrado</button>
+        
+        <h3>Archivo Descifrado Disponible:</h3>
+        <a href="{{ archivo_descifrado }}" download class="btn btn-primary">Descargar archivo descifrado</a>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+    document.getElementById("play-descifrado").addEventListener("click", function() {
+        playMidiFile("{{ archivo_descifrado }}");
+    });
+</script>
+{% endblock %}
