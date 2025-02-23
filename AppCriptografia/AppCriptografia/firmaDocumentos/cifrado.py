@@ -38,7 +38,7 @@ def sign_doc(archivo):
     with open(firma_path, "wb") as f:
         f.write(firma)
 
-    return firma_path
+    return firma_path, archivo.name 
 
 
 def validate_sign(archivo, firma):

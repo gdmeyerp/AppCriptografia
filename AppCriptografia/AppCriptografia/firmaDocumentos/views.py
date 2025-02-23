@@ -17,7 +17,7 @@ def upload_file_sign(request):
         form = UploadFileForm(request.POST, request.FILES)
         if form.is_valid():
             file_obj = request.FILES['file']
-            processed_content = sign_doc(file_obj)
+            processed_content, archivo_nombre = sign_doc(file_obj)
 
             ArchivoFirmado.objects.create(
                 usuario=request.user,
@@ -34,7 +34,7 @@ def upload_file_sign(request):
             
             # Configuramos la respuesta para descarga.
             response = HttpResponse(processed_file.getvalue(), content_type='application/sig')
-            response['Content-Disposition'] = 'attachment; filename="documento_firmado.sig"'
+            response['Content-Disposition'] = f'attachment; filename="{archivo_nombre}.sig"'
             return response
     else:
         form = UploadFileForm()
