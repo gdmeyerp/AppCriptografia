@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'afin',
     'desplazamiento',
     'cifrado_musical',
+    'firmaDocumentos',
 ]
 
 MIDDLEWARE = [

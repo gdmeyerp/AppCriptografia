@@ -1,0 +1,14 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <h1 class="text-center">Módulo de Firma de Documentos</h1>
+    <p class="text-center">Selecciona una acción:</p>
+    <div class="text-center">
+        <a href="{% url 'firmaDocumentos:cifrar' %}" class="btn btn-primary">Firmar Documento</a>
+        <a href="{% url 'firmaDocumentos:validar' %}" class="btn btn-success">Verificar Firma</a>
+        <a href="{% url 'firmaDocumentos:historial' %}" class="btn btn-secondary">Ver Historial</a>
+    </div>
+</div>
+{% endblock %}
+

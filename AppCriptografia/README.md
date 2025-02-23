@@ -2,6 +2,14 @@
 
 ¡Bienvenido a AppCriptografia! Esta aplicación te permite explorar varios métodos clásicos de criptografía y analizar textos usando herramientas avanzadas de criptoanálisis. A continuación, te presentamos una guía sobre cómo navegar y utilizar la app de manera eficiente.
 
+Puedes acceder a la AppCriptografía usando el siguiente link: https://jrodriguezru.pythonanywhere.com/
+
+Elaborada por:
+- Sarah Daniella Coral Zuniga
+- Edison Camilo Huerfano Villalba
+- German Daniel Meyer Patarroyo
+- Juan Antonio Rodriguez Rubio
+
 ---
 
 ## 📲 **Pantalla de Inicio**

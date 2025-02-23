@@ -1,0 +1,18 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Cargar archivos para validar la firma digital</h1> 
+<form method="post" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    <button type= "submit"> Procesar</button> 
+</form>
+
+{% if resultado %}
+    <br>
+    <p><strong>Resultado de la validación: </strong> {{ resultado }}</p>
+    <br>
+{% endif %}
+
+{% endblock %}

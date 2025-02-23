@@ -1,0 +1,11 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<h1>Cargar archivo para firma digital</h1> 
+<form method="post" enctype="multipart/form-data"> 
+    {% csrf_token %} 
+    {{ form.as_p }} 
+    <button type= "submit"> Procesar y Firmar</button> 
+</form>
+{% endblock %}
