@@ -1,9 +1,7 @@
 // midi_reproduction.js
-// Funciones para generar, descargar y reproducir un archivo MIDI encriptado usando jsmidgen
 
 /**
  * Convierte un nombre de nota (ej: 'C4') a número MIDI (0-127).
- * (Esta función se utiliza en generarMidiEncriptado si es necesario).
  */
 function noteToMidi(noteName) {
   const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B'];
@@ -60,10 +58,8 @@ function generarMidiEncriptado(midi, encryptedNotes) {
 }
 
 /**
- * Utiliza jsmidgen para generar una cadena binaria que representa
  * el archivo MIDI a partir del objeto midiEncriptado.
  *
- * Nota: jsmidgen expone la variable global "Midi" y sus clases "Midi.File" y "Midi.Track".
  */
 function crearArchivoMidi(midiEncriptado) {
   // Verificar que jsmidgen esté cargado.
@@ -86,19 +82,14 @@ function crearArchivoMidi(midiEncriptado) {
   } else {
     controlTrack.setTempo(120);
   }
-  
-  // (Opcional) Puedes agregar eventos meta para la firma de tiempo si lo deseas
-  
+    
   // Para cada pista en el objeto MIDI encriptado, crea un track en el archivo
   midiEncriptado.tracks.forEach(function(trk) {
     var track = new Midi.Track();
     file.addTrack(track);
     
-    // Si deseas agregar cambios de instrumento, jsmidgen tiene soporte limitado para eventos de programa.
-    // Agregar cada nota del track:
     trk.notes.forEach(function(note) {
       // Usamos una duración fija '4' (negra) para cada nota.
-      // Si necesitas duraciones variables, deberás calcularlas.
       track.addNote(0, note.name, '4');
     });
   });
@@ -127,13 +118,6 @@ function descargarMidi(midiData) {
   document.body.removeChild(a);
   URL.revokeObjectURL(url);
 }
-
-/**
- * Nuevo reproductor para el MIDI encriptado.
- * Crea un sintetizador independiente y programa la reproducción del objeto MIDI encriptado,
- * de forma similar a lo que hace el reproductor en midi_handler.js.
- */
-
 
 // Exportar funciones globalmente
 window.generarMidiEncriptado = generarMidiEncriptado;

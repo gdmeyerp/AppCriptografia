@@ -1,57 +1,142 @@
 {% extends "dashboard/index.html" %}
 
 {% block content %}
-    <h1>Calculadora de Índice de Coincidencia</h1>
-    <form method="POST" action="">
-        {% csrf_token %}
-        <label for="texto">Texto cifrado:</label><br>
-        <textarea name="texto" rows="5" cols="40" placeholder="Introduce el texto cifrado"></textarea><br><br>
-        
-        <label for="longitud_max">Longitud máxima a probar:</label><br>
-        <input type="number" name="longitud_max" min="2" placeholder="Ejemplo: 4"><br><br>
-        
-        <button type="submit">Calcular</button>
-    </form>
+<!-- Ejemplo: si usas Bootstrap 5 y Font Awesome -->
+<link 
+  href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" 
+  rel="stylesheet"
+/>
+<link 
+  rel="stylesheet" 
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
 
-    {% if resultados %}
-        <h2>Resultados del Análisis</h2>
-        <p><strong>Texto:</strong> {{ texto }}</p>
-        <p><strong>Índice de Coincidencia (Friedman):</strong> {{ ic_friedman }}</p>
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Longitud de Clave</th>
-                    <th>Bloques</th>
-                    <th>IC por Bloque</th>
-                    <th>Similitud por Bloque</th>
-                    <th>IC Promedio</th>
-                    <th>Similitud Promedio</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for resultado in resultados %}
-                <tr>
-                    <td>{{ resultado.longitud }}</td>
-                    <td>
-                        {% for bloque in resultado.bloques %}
-                            <div>{{ bloque }}</div>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for ic in resultado.ic_bloques %}
-                            <div>{{ ic }}</div>
-                        {% endfor %}
-                    </td>
-                    <td>
-                        {% for sim in resultado.similitud_bloques %}
-                            <div>{{ sim }}</div>
-                        {% endfor %}
-                    </td>
-                    <td>{{ resultado.ic_promedio }}</td>
-                    <td>{{ resultado.similitud_promedio }}</td>
-                </tr>
+<div class="container my-4">
+  <!-- Título principal -->
+  <h1 class="text-center mb-4">
+    <i class="fas fa-calculator"></i> Calculadora de Índice de Coincidencia
+  </h1>
+</div>
+<div>
+<!-- Sección: Cómo usar la calculadora -->
+  <div class="card mb-4">
+    <div class="card-header bg-primary text-white">
+      <h2 class="mb-0">Cómo usar la calculadora</h2>
+    </div>
+    <div class="card-body">
+      <p>
+        En esta sección puedes analizar el texto cifrado para determinar la 
+        longitud de clave más probable usando el Índice de Coincidencia.
+        <br><br>
+        <strong>Pasos a seguir:</strong>
+      </p>
+      <ol>
+        <li>Introduce el <strong>texto cifrado</strong> en el área de texto.</li>
+        <li>Indica la <strong>longitud máxima</strong> de clave que deseas probar (por ejemplo, 4 o 6).</li>
+        <li>Haz clic en <strong>Calcular</strong> para ver el resultado.</li>
+      </ol>
+      <p>
+        El análisis mostrará un índice de coincidencia para cada longitud de clave, 
+        así como la similitud promedio de los bloques analizados. Esto te ayudará 
+        a identificar cuál podría ser la clave más probable en un cifrado por 
+        sustitución polialfabética.
+      </p>
+    </div>
+  </div>
+
+  <!-- Formulario de cálculo -->
+  <div class="card">
+    <div class="card-header bg-secondary text-white">
+      <h3 class="mb-0">Parámetros de Análisis</h3>
+    </div>
+    <div class="card-body">
+      <form method="POST" action="">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+          <label for="texto" class="form-label"><strong>Texto cifrado:</strong></label>
+          <textarea 
+            name="texto" 
+            rows="5" 
+            cols="40" 
+            class="form-control" 
+            placeholder="Introduce el texto cifrado"
+          ></textarea>
+        </div>
+        
+        <div class="mb-3">
+          <label for="longitud_max" class="form-label"><strong>Longitud máxima a probar:</strong></label>
+          <input 
+            type="number" 
+            name="longitud_max" 
+            min="2" 
+            class="form-control" 
+            placeholder="Ejemplo: 4"
+          >
+        </div>
+        
+        <button type="submit" class="btn btn-primary">
+          <i class="fas fa-check"></i> Calcular
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Resultados del análisis -->
+  {% if resultados %}
+  <div class="card mt-4">
+    <div class="card-header bg-info text-white">
+      <h3 class="mb-0">Resultados del Análisis</h3>
+    </div>
+    <div class="card-body">
+      <p><strong>Texto Analizado:</strong> {{ texto }}</p>
+      <p><strong>Índice de Coincidencia (Friedman):</strong> {{ ic_friedman }}</p>
+      
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead class="table-light">
+            <tr>
+              <th>Longitud de Clave</th>
+              <th>Bloques</th>
+              <th>IC por Bloque</th>
+              <th>Similitud por Bloque</th>
+              <th>IC Promedio</th>
+              <th>Similitud Promedio</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for resultado in resultados %}
+            <tr>
+              <td>{{ resultado.longitud }}</td>
+              <td>
+                {% for bloque in resultado.bloques %}
+                  <div>{{ bloque }}</div>
                 {% endfor %}
-            </tbody>
+              </td>
+              <td>
+                {% for ic in resultado.ic_bloques %}
+                  <div>{{ ic }}</div>
+                {% endfor %}
+              </td>
+              <td>
+                {% for sim in resultado.similitud_bloques %}
+                  <div>{{ sim }}</div>
+                {% endfor %}
+              </td>
+              <td>{{ resultado.ic_promedio }}</td>
+              <td>{{ resultado.similitud_promedio }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
         </table>
-    {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<!-- Scripts de Bootstrap (opcional si usas la versión bundle) -->
+<script 
+  src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+></script>
 {% endblock %}

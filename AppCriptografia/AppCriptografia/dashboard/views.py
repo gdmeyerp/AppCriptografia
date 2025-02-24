@@ -90,7 +90,7 @@ def index_view(request):
 def cifrar_metodos(request):
     """Vista para mostrar los métodos de cifrado disponibles."""
     metodos = [
-        {'nombre': 'Vigenère', 'slug': 'vigenere', 'imagen': 'vigenere.jpg', 'descripcion': 'Método clásico basado en una clave repetitiva.'},
+        {'nombre': 'Vigenère', 'slug': 'vigenere', 'imagen': 'vigenere.png', 'descripcion': 'Método clásico basado en una clave repetitiva.'},
         #{'nombre': 'César', 'slug': 'cesar', 'imagen': 'cesar.jpg', 'descripcion': 'Desplaza las letras un número fijo.'},
         {'nombre': 'RSA', 'slug': 'rsa', 'imagen': 'rsa.jpg', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},

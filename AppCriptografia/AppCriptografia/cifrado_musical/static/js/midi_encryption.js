@@ -172,56 +172,69 @@ function aplicarEncriptacionFrontend(midi) {
     originalNotes.push("No se encontraron notas originales.");
   }
   
-  // 4. Crear la vista para las notas originales.
+  // 4. Crear la vista para las notas originales (módulo dinámico).
   crearModuloDinamico({
     id: "midi-notes-original-container-dinamico",
-    headerHTML: `<h5 class="mb-0"><i class="fas fa-music"></i> Notación de Notas Originales</h5>`,
-    bodyHTML: `<p><strong>Notas originales:</strong><br>${originalNotes.join(" - ")}</p>`,
-    cardClasses: "card shadow mb-3",
+    headerHTML: `
+      <h5 class="mb-0">
+        <i class="fas fa-music"></i> Notación de Notas Originales
+      </h5>
+    `,
+    bodyHTML: `
+      <p class="mb-0">
+        <strong>Notas originales:</strong><br>
+        ${originalNotes.join(" - ")}
+      </p>
+    `,
+    // Clases adicionales para mejor estilo
+    cardClasses: "card shadow mb-3 border border-secondary",
     headerClasses: "card-header bg-secondary text-white text-center",
-    bodyClasses: "card-body",
+    bodyClasses: "card-body p-3 text-wrap",
     parentContainerId: "midi-encryption-container"
   });
 
-  // 2. Crear la vista para las notas encriptadas.
+  // 2. Crear la vista para las notas encriptadas (módulo dinámico).
   crearModuloDinamico({
     id: "midi-notes-encriptadas-container-dinamico",
-    headerHTML: `<h5 class="mb-0"><i class="fas fa-lock"></i> Notación de Notas (Encriptadas)</h5>`,
-    bodyHTML: `<p><strong>Notas encriptadas:</strong><br>${encryptedNotes.join(" - ")}</p>`,
-    cardClasses: "card shadow mb-3",
+    headerHTML: `
+      <h5 class="mb-0">
+        <i class="fas fa-lock"></i> Notación de Notas (Encriptadas)
+      </h5>
+    `,
+    bodyHTML: `
+      <p class="mb-0">
+        <strong>Notas encriptadas:</strong><br>
+        ${encryptedNotes.join(" - ")}
+      </p>
+    `,
+    // Clases adicionales para mejor estilo
+    cardClasses: "card shadow mb-3 border border-info",
     headerClasses: "card-header bg-info text-white text-center",
-    bodyClasses: "card-body",
+    bodyClasses: "card-body p-3 text-wrap",
     parentContainerId: "midi-encryption-container"
   });
 }
-
 
 // Exportar para uso global
 window.aplicarEncriptacionFrontend = aplicarEncriptacionFrontend;
 
 // --- Control de parámetros del método de encriptación ---
-// Al cambiar el método seleccionado se muestran/ocultan los parámetros correspondientes.
 document.addEventListener("DOMContentLoaded", function() {
   const metodoSelect = document.getElementById("metodoEncriptacion");
   if (metodoSelect) {
     metodoSelect.addEventListener("change", function() {
-      // Oculta ambos bloques de parámetros
       const divDesplazamiento = document.getElementById("parametros-desplazamiento");
-      const divInversion = document.getElementById("parametros-inversion");
+      const divInversion = document.getElementById("parametros-inverssion");
       if (divDesplazamiento) divDesplazamiento.style.display = "none";
       if (divInversion) divInversion.style.display = "none";
 
-      // Según el método, muestra el bloque correspondiente
       if (this.value === "desplazamiento") {
         if (divDesplazamiento) divDesplazamiento.style.display = "block";
       } else if (this.value === "inversion") {
         if (divInversion) divInversion.style.display = "block";
       }
-      // Para "retroceso" no se requiere parámetro adicional.
+      // "retroceso" no requiere parámetro adicional
     });
-    // Disparar el evento para establecer la visualización inicial
     metodoSelect.dispatchEvent(new Event("change"));
   }
-
-  
 });

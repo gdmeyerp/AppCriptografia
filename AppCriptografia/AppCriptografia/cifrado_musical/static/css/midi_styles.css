@@ -1,52 +1,257 @@
-/* Estilos exclusivos para la vista MIDI */
-#midi-container {
-    width: 90%;
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
-}
+/***********************************************
+ * 1. ESTILOS BÁSICOS GENERALES
+ ***********************************************/
+ body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;  /* Fondo claro */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .container {
+    max-width: 1200px; /* Ejemplo: Ajustar el ancho máximo */
+  }
+  
+  /***********************************************
+   * 2. ENCABEZADO PRINCIPAL Y TITULOS
+   ***********************************************/
+  #midi-header {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #444;
+    margin-bottom: 1rem;
+  }
+  
+  /***********************************************
+   * 3. CONTENEDOR PRINCIPAL
+   ***********************************************/
+  #midi-container {
+    padding-bottom: 2rem;
+    /* Agrega más estilos si deseas */
+  }
+  
+  /***********************************************
+   * 4. SECCIÓN DE ENCRIPTACIÓN
+   ***********************************************/
+  #midi-encryption-container {
+    border-radius: 8px;
+    border: none;
+    /* Puedes añadir padding interno si gustas */
+  }
+  
+  #metodoEncriptacion {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+  }
+  
+  /* Parámetros de desplazamiento */
+  #parametros-desplazamiento {
+    margin-top: 1rem;
+  }
+  
+  #claveDesplazamiento {
+    width: 100px; /* Ajusta el ancho del input si deseas */
+    border-radius: 4px;
+  }
+  
+  /* Parámetros de inversión */
+  #parametros-inversion {
+    margin-top: 1rem;
+  }
+  
+  #pivotNote {
+    width: 100px;
+    border-radius: 4px;
+  }
+  
+  /* Input de archivo */
+  #archivo-midi {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+  }
 
-#midi-header {
-    text-align: center;
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+/***********************************************
+ * Contenedor de la Partitura
+ ***********************************************/
 
-#midi-uploader {
-    text-align: center;
-    margin-bottom: 20px;
-}
-
-#midi-player {
-    text-align: center;
-    margin-top: 20px;
-}
-
-#midi-notes {
-    background: #f8f9fa;
-    padding: 15px;
-    border-radius: 5px;
-    white-space: pre-wrap;
-    font-family: "Courier New", monospace;
-    overflow-y: auto;
-    max-height: 300px;
-}
-
-/* 🎼 Sección de la partitura con scroll completo */
+/* Contenedor de la Partitura dentro del card-body */
 #midi-sheet-container {
-    max-height: 600px;  /* Ajusta según necesidad */
-    overflow-y: auto;  /* Permite desplazamiento vertical */
-    border: 1px solid #ccc;
-    background: #ffffff;
-    padding: 15px;
+    max-height: none ;           /* Altura máxima para el área de la partitura */
+    overflow-y:auto ;            /* Activa scroll vertical si el contenido excede la altura */
+    overflow-x: auto;
+    border: 1px solid #ccc;      /* Opcional: delimita visualmente el contenedor */
+    padding: 0.5rem;             /* Espaciado interno */
+    margin-top: 1rem;   
+
+  }
+  
+  /* Forzar que el SVG generado por VexFlow se ajuste al contenedor */
+#midi-sheet svg {
+  width: 100% ;      /* Ocupa el 100% del ancho del contenedor */
+  max-width: 100%;
+  max-height: 30%;  
+}
+  
+  
+/***********************************************
+   * 6. NOTAS ORIGINALES Y ENCRIPTADAS
+   ***********************************************/
+/* Contenedor general de notas */
+#midi-original-container-dinamico,
+#midi-encriptado-container-dinamico {
+  max-height: 200px;  /* Limita la altura del contenedor */
+  overflow-y: auto;   /* Activa scroll vertical si el contenido excede el espacio */
+  overflow-x: hidden; /* Evita el desplazamiento horizontal innecesario */
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  padding: 1rem;
+  border-radius: 4px;
+  white-space: normal; /* Permite que el texto se ajuste */
+  word-wrap: break-word; /* Asegura que las palabras largas se dividan en varias líneas */
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  overflow-y: auto;
+
 }
 
-/* Ajustar el tamaño del SVG */
-#midi-sheet {
-    width: 100%;
-    max-width: 100%;
+
+#midi-notes-original-container-dinamico,
+#midi-notes-encriptadas-container-dinamico
+{
+    overflow-x: auto ;
     overflow-y: auto;
-    display: flex;
-    flex-direction: column;  /* Asegura que las filas de pentagramas se acomoden */
+    max-height:200px;
 }
+  
+  /***********************************************
+   * 6. NOTAS ORIGINALES Y ENCRIPTADAS
+   ***********************************************/
+  /* Contenedores principales */
+  #midi-original-container,
+  #midi-encriptado-container {
+    min-height: 300px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  
+  /* Contenedores internos donde se mostrarán las notas */
+  #midi-original,
+  #midi-encriptado {
+    max-height: 100px;
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 0.9rem; /* Reduce el tamaño del texto para mejorar la legibilidad */
+    line-height: 1.4;  /* Espaciado entre líneas */
+    overflow-wrap: break-word;
+  }
+  
+
+/* Forzar que las notas se mantengan en su espacio */
+.row {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+  }
+  
+  /* Evitar que el título y los controles se solapen */
+  #midi-header {
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  /***********************************************
+   * 🔹 MEJORAS EN LOS BOTONES Y FORMULARIOS
+   ***********************************************/
+  
+  #metodoEncriptacion,
+  #claveDesplazamiento {
+    width: 100%; /* Ajustar inputs para que no se desborden */
+    margin-bottom: 10px;
+  }
+  
+  #btn-enviar-notas {
+    margin-top: 10px;
+    padding: 8px 15px;
+    border-radius: 5px;
+  }
+  
+  /***********************************************
+   * 7. REPRODUCTOR MIDI
+   ***********************************************/
+  #midi-player {
+    margin-top: 1rem; /* Separación con la sección anterior */
+    display: none;    /* Oculto por defecto, se muestra vía JS */
+  }
+  
+  /* Botones de reproducción y stop */
+  #play-midi,
+  #stop-midi {
+    margin: 0.5rem;
+    width: 120px; /* Ancho fijo opcional */
+  }
+  
+  #play-midi {
+    /* Personaliza el color o estilo */
+    background-color: #007bff; /* Azul Bootstrap */
+    border-color: #007bff;
+  }
+  
+  #stop-midi {
+    /* Personaliza el color o estilo */
+    background-color: #dc3545; /* Rojo Bootstrap */
+    border-color: #dc3545;
+  }
+  
+  /***********************************************
+   * 8. BOTÓN DE DESCARGA / ENVIAR NOTAS
+   ***********************************************/
+  #btn-enviar-notas {
+    margin-top: 1rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 4px;
+  }
+  
+  /***********************************************
+   * 9. ESTILOS PARA LAS CARDS (OPCIONALES)
+   ***********************************************/
+  .card {
+    border-radius: 8px;
+    border: none;
+  }
+  
+  .card-header {
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  
+  .shadow {
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  /***********************************************
+   * 10. RESPONSIVIDAD (EJEMPLO)
+   ***********************************************/
+@media (max-width: 767.98px) {
+  #midi-header {
+    font-size: 1.75rem;
+  }
+  #midi-sheet {
+    min-height: 200px;
+  }
+  #midi-original-container,
+  #midi-encriptado-container {
+    min-height: 120px;
+  }
+  #play-midi,
+  #stop-midi {
+    width: auto; /* Permite al botón ajustarse al tamaño del texto en móviles */
+  }
+}
+  

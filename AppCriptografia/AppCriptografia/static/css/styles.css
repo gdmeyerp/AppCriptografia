@@ -127,6 +127,9 @@ footer a {
     background-color: #0056b3;
 }
 
+.p{
+    max-height: 0cm;
+}
 /* Estilos responsivos */
 @media (max-width: 1200px) {
     .card-container {
