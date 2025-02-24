@@ -19,10 +19,8 @@ from cifrado_musical.models import PartituraCifrada, PartituraDescifrada
 def historial_dinamico(request):
     """Vista para mostrar las tablas dinámicas según el método y tipo de acción"""
     tabla = request.GET.get('tabla', 'vigenere_cifrado')  # Tabla seleccionada, por defecto Vigenere Cifrado
-
     # Datos inicializados como vacíos
     datos = []
-
     # Lógica para seleccionar qué tabla cargar
     if tabla == 'vigenere_cifrado':
         datos = VigenereCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
@@ -85,23 +83,21 @@ def index_view(request):
     return render(request, 'dashboard/index.html', {'modulos': modulos})
 
 
-
 @login_required
 def cifrar_metodos(request):
     """Vista para mostrar los métodos de cifrado disponibles."""
     metodos = [
         {'nombre': 'Vigenère', 'slug': 'vigenere', 'imagen': 'vigenere.png', 'descripcion': 'Método clásico basado en una clave repetitiva.'},
         #{'nombre': 'César', 'slug': 'cesar', 'imagen': 'cesar.jpg', 'descripcion': 'Desplaza las letras un número fijo.'},
-        {'nombre': 'RSA', 'slug': 'rsa', 'imagen': 'rsa.jpg', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
-        {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': None, 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
-        {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': None, 'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
-        {'nombre': 'Hill', 'slug': 'hill', 'imagen': None, 'descripcion': 'Cifrado basado en transformaciones lineales.'},
-        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': None, 'descripcion': 'Cifrado basado en matrices de permutación.'},
-        {'nombre': 'Afín', 'slug': 'afin', 'imagen': None, 'descripcion': 'Cifrado basado en combinaciones lineales de letras.'},
-        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': None, 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
+        {'nombre': 'RSA', 'slug': 'rsa', 'imagen': 'rsa.png', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
+        {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': 'multiplicativo.png', 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
+        {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': 'sustitucion.png', 'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
+        {'nombre': 'Hill', 'slug': 'hill', 'imagen': 'hill.png', 'descripcion': 'Cifrado basado en transformaciones lineales.'},
+        {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': 'permutacion.png', 'descripcion': 'Cifrado basado en matrices de permutación.'},
+        {'nombre': 'Afín', 'slug': 'afin', 'imagen': 'afin.png', 'descripcion': 'Cifrado basado en combinaciones lineales de letras.'},
+        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': 'desplazamiento.png', 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
         {'nombre': 'Cifrado Musical', 'slug': 'cifrado_musical', 'imagen': 'musical.jpg', 'descripcion': 'Cifra partituras musicales alterando sus notas.'},
         {'nombre': 'Firma Digital de Documentos', 'slug': 'firmaDocumentos', 'imagen': None, 'descripcion': 'Firma digitalmente un docuemnto usando RSA.'},
-
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas

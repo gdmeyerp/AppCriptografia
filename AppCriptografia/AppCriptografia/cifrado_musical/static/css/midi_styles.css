@@ -3,7 +3,7 @@
  ***********************************************/
  body {
     font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f8f9fa;  /* Fondo claro */
+    background-color: #f0f2f5;  /* Fondo claro */
     margin: 0;
     padding: 0;
   }
@@ -18,7 +18,7 @@
   #midi-header {
     font-size: 2rem;
     font-weight: 700;
-    color: #444;
+    color: #ebe7e7;
     margin-bottom: 1rem;
   }
   

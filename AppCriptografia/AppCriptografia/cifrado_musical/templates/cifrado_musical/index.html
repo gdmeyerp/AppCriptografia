@@ -1,91 +1,48 @@
 {% extends "dashboard/index.html" %}
+{% load static %}
 
 {% block content %}
-<!-- Estilos personalizados -->
-<style>
-  /* Fondo general para la sección */
-  body {
-    background: #f0f2f5;
-  }
-
-  /* Título principal */
-  h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #333;
-    margin-bottom: 1rem;
-  }
-
-  /* Texto informativo */
-  p {
-    font-size: 1.1rem;
-    color: #555;
-  }
-  .container{
-    padding: 13px;
-  }
-  /* Estilos para los botones */
-  .btn {
-    font-size: 1.1rem;
-    padding: 0.75rem 1.5rem;
-    border-radius: 50px;
-    transition: background 0.3s ease, transform 0.3s ease;
-  }
-
-  .btn:hover {
-    transform: translateY(-2px);
-  }
-
-  /* Botón de Cifrar (azul oscuro) */
-  .btn-primary {
-    background-color: #43c97600;
-    border-color: #08db3d;
-  }
-  .btn-primary:hover {
-    background-color: #0069d9;
-    border-color: #0062cc;
-  }
-
-  /* Botón de Descifrar (verde) */
-  .btn-success {
-    background-color: #28a74600;
-    border-color: #28a745;
-  }
-  .btn-success:hover {
-    background-color: #218838;
-    border-color: #1e7e34;
-  }
-
-  /* Botón de Historial (gris) */
-  .btn-secondary {
-    background-color: #6c757d00;
-    border-color: #6c757d;
-  }
-  .btn-secondary:hover {
-    background-color: #5a6268;
-    border-color: #545b62;
-  }
-</style>
-
 <div class="container mt-4">
-  <h1 class="text-center">Módulo de Cifrado de Partituras</h1>
-</div>
+  <!-- Título principal y descripción introductoria -->
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 class="mb-3">Módulo de Cifrado de Partituras</h1>
+      <p class="lead">Descubre cómo transformar y proteger partituras musicales mediante técnicas de cifrado.</p>
+    </div>
+  </div>
 
-<div class="container mt-4">
-  <p class="text-center">Selecciona una acción:</p>
-</div>
+  <!-- Sección explicativa e histórica -->
+  <div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h2 class="h4 mb-0">¿Qué es el Cifrado Musical?</h2>
+      </div>
+      <div class="card-body">
+        <p>
+          El cifrado musical es un proceso que transforma partituras o secuencias de notas en datos codificados, de forma que solo puedan interpretarse si se dispone de la clave correcta. Esto permite proteger composiciones, ocultar mensajes en criptografía aplicada a la música.
+        </p>
 
-<div class="container mt-4">
-  <div class="d-flex justify-content-center">
-    <a href="{% url 'cifrado_musical:cifrar' %}" class="btn btn-primary mx-2">
-      <i class="fas fa-lock"></i> Cifrar Partitura
-    </a>
-    <a href="{% url 'cifrado_musical:descifrar' %}" class="btn btn-success mx-2">
-      <i class="fas fa-unlock"></i> Descifrar Partitura
-    </a>
-    <a href="{% url 'cifrado_musical:historial' %}" class="btn btn-secondary mx-2">
-      <i class="fas fa-history"></i> Ver Historial
-    </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de instrucciones y acciones -->
+  <div class="container mt-4">
+    <p class="text-center">Selecciona una acción:</p>
+  </div>
+
+  <div class="container mt-4">
+    <div class="d-flex justify-content-center">
+      <a href="{% url 'cifrado_musical:cifrar' %}" class="btn btn-primary mx-2">
+        <i class="fas fa-lock"></i> Cifrar Partitura
+      </a>
+      <a href="{% url 'cifrado_musical:descifrar' %}" class="btn btn-success mx-2">
+        <i class="fas fa-unlock"></i> Descifrar Partitura
+      </a>
+      <a href="{% url 'cifrado_musical:historial' %}" class="btn btn-secondary mx-2">
+        <i class="fas fa-history"></i> Ver Historial
+      </a>
+    </div>
   </div>
 </div>
 {% endblock %}

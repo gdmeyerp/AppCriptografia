@@ -1,17 +1,64 @@
 {% extends "dashboard/index.html" %}
+{% load static %}
 
 {% block content %}
-<h2>Cifrar Mensaje</h2>
-<form method="POST" action="{% url 'vigenere:cifrar' %}">
-    {% csrf_token %}
-    <label for="mensaje">Mensaje:</label><br>
-    <textarea name="mensaje" id="mensaje" required></textarea><br>
-    <label for="clave">Clave:</label><br>
-    <input type="text" name="clave" id="clave" required><br><br>
-    <button type="submit">Cifrar</button>
-</form>
+<!-- Incluir el archivo CSS para el módulo Vigenère -->
+<link rel="stylesheet" href="{% static 'css/vigenere_styles.css' %}">
 
-{% if mensaje_cifrado %}
-    <p><strong>Mensaje Cifrado:</strong> {{ mensaje_cifrado }}</p>
-{% endif %}
+<div id="vigenere-container" class="container">
+  <!-- Título y breve introducción -->
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 id="vigenere-header">Bienvenido al módulo Vigenère</h1>
+    </div>
+  </div>
+</div>
+<div id="vigenere-container" class="container">
+  <!-- Sección de instrucciones -->
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="alert alert-info">
+        <h4 class="alert-heading">Instrucciones de uso</h4>
+        <ol>
+          <li>Introduce el <strong>mensaje</strong> que deseas cifrar en el campo de texto.</li>
+          <li>Escribe la <strong>clave</strong> para el cifrado (por ejemplo, <em>"CLAVE"</em>). La clave se repetirá para cubrir el mensaje completo.</li>
+          <li>Haz clic en el botón <strong>Cifrar</strong> para procesar el mensaje.</li>
+          <li>El mensaje cifrado se mostrará en la parte inferior del formulario.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Formulario de cifrado -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <form method="POST" action="{% url 'vigenere:cifrar' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="mensaje" class="form-label">Mensaje:</label>
+              <textarea name="mensaje" id="mensaje" class="form-control" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="clave" class="form-label">Clave:</label>
+              <input type="text" name="clave" id="clave" class="form-control" required>
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Cifrar</button>
+            </div>
+          </form>
+
+          {% if mensaje_cifrado %}
+          <div class="mt-4 alert alert-success">
+            <strong>Mensaje Cifrado:</strong> {{ mensaje_cifrado }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

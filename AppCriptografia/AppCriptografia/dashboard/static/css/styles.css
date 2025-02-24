@@ -1,0 +1,257 @@
+/* Importa una fuente moderna */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
+
+/* --- Variables CSS --- */
+:root {
+  --primary-color: #007bff;
+  --primary-dark: #0056b3;
+  --secondary-color: #6c757d;
+  --background: #f4f4f9;
+  --text-color: #333;
+  --header-bg: #333;
+  --header-text: #fff;
+  --aside-bg: #eaeaea;
+  --link-color: #007bff;
+  --link-hover: #0056b3;
+  --card-border: #ddd;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+  --card-shadow-hover: rgba(0, 0, 0, 0.2);
+}
+
+/* --- Estilos generales --- */
+body {
+  font-family: 'Montserrat', sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: var(--background);
+  color: var(--text-color);
+  line-height: 1.6;
+}
+
+/* --- Header --- */
+header {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px var(--card-shadow);
+}
+
+header .header-left h1 {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+header .header-right a {
+  color: var(--header-text);
+  text-decoration: none;
+  margin: 0 15px;
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+header .header-right a:hover {
+  color: #ff5757;
+}
+
+/* --- Contenedores: aside y main --- */
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 15px;
+}
+
+aside {
+  width: 220px;
+  background-color: var(--aside-bg);
+  padding: 20px;
+}
+
+aside a {
+  display: block;
+  margin-bottom: 10px;
+  padding: 10px;
+  color: var(--link-color);
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+aside a:hover {
+  background-color: var(--link-color);
+  color: #fff;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+  background-color: #fff;
+  border-left: 1px solid #ccc;
+}
+
+/* --- Footer --- */
+footer {
+  background-color: var(--header-bg);
+  color: var(--header-text);
+  text-align: center;
+  padding: 10px 0;
+  font-size: 0.9rem;
+}
+
+footer a {
+  color: var(--header-text);
+  text-decoration: underline;
+}
+
+/* --- Tarjetas / Card Container --- */
+.card-container {
+  /* Utilizamos grid para un diseño responsivo */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+/* Estilos generales para tarjetas */
+.card {
+  background-color: #fff;
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0 4px 6px var(--card-shadow);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px var(--card-shadow-hover);
+}
+
+.card img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.card-title {
+  font-size: 1.2rem;
+  margin: 15px 0;
+  color: var(--text-color);
+}
+
+.card-description {
+  font-size: 0.9rem;
+  color: #555;
+  margin: 0 15px 15px;
+  text-align: center;
+}
+
+.card-link {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.card-link:hover {
+  background-color: var(--primary-dark);
+}
+
+/* --- Lista de acciones --- */
+.list-group {
+  margin-top: 1.5rem;
+}
+
+.list-group-item {
+  font-size: 1.1rem;
+  padding: 1rem;
+  border: none;
+  border-bottom: 1px solid #ddd;
+}
+
+.list-group-item a {
+  text-decoration: none;
+  color: var(--link-color);
+  display: block;
+  width: 100%;
+  transition: color 0.3s;
+}
+
+.list-group-item a:hover {
+  color: var(--link-hover);
+  text-decoration: underline;
+}
+
+/* --- Sección explicativa --- */
+.explanation-section {
+  background: #e9f7fd;
+  border-left: 4px solid #17a2b8;
+  padding: 1rem;
+  margin-top: 2rem;
+  border-radius: 4px;
+}
+
+.explanation-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+
+.explanation-section h4 {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  color: #444;
+}
+
+.explanation-section ol {
+  margin-left: 1.5rem;
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.explanation-section p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+/* --- Responsividad --- */
+@media (max-width: 1200px) {
+  .card-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  header .header-left h1 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: 1fr;
+  }
+  header {
+    flex-direction: column;
+    text-align: center;
+  }
+  header .header-right {
+    margin-top: 10px;
+  }
+  aside {
+    width: 100%;
+    text-align: center;
+  }
+}

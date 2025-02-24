@@ -1,0 +1,103 @@
+/* vigenere_styles.css */
+
+/* Fondo y tipografía general */
+body {
+    background-color: #f4f4f9;
+    font-family: 'Arial', sans-serif;
+    color: #333;
+  }
+  
+  /* Contenedor principal del módulo Vigenère */
+  #vigenere-container {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+  
+  /* Título principal */
+  #vigenere-header {
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 1rem;
+    color: #222;
+  }
+  
+  /* Descripción introductoria */
+  #vigenere-lead {
+    font-size: 1.2rem;
+    text-align: center;
+    color: #555;
+    margin-bottom: 2rem;
+  }
+  
+  /* Tarjeta de introducción histórica */
+  #vigenere-history-card {
+    margin-bottom: 2rem;
+  }
+  
+  #vigenere-history-card .card-header {
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-size: 1.75rem;
+    padding: 0.75rem;
+  }
+  
+  #vigenere-history-card .card-body {
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #444;
+  }
+  
+  /* Tarjeta de acciones */
+  #vigenere-actions-card {
+    margin-bottom: 2rem;
+  }
+  
+  #vigenere-actions-card .card-header {
+    background-color: #6c757d;
+    color: white;
+    text-align: center;
+    font-size: 1.75rem;
+    padding: 0.75rem;
+  }
+  
+  #vigenere-actions-card .card-body {
+    padding: 1.5rem;
+  }
+  
+  #vigenere-actions-card .list-group-item {
+    font-size: 1.1rem;
+    padding: 1rem;
+    border: none;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  #vigenere-actions-card .list-group-item a {
+    text-decoration: none;
+    color: #007bff;
+    display: block;
+    width: 100%;
+    transition: color 0.3s;
+  }
+  
+  #vigenere-actions-card .list-group-item a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+  }
+  
+  /* Responsividad: ajusta los márgenes y tamaños en pantallas pequeñas */
+  @media (max-width: 768px) {
+    #vigenere-header {
+      font-size: 2rem;
+    }
+    #vigenere-history-card .card-header,
+    #vigenere-actions-card .card-header {
+      font-size: 1.5rem;
+    }
+    #vigenere-lead {
+      font-size: 1.1rem;
+    }
+  }
+  

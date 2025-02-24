@@ -1,10 +1,56 @@
 {% extends "dashboard/index.html" %}
+{% load static %}
 
 {% block content %}
-<h1>Bienvenido al módulo Vigenère</h1>
-<p>Selecciona una acción:</p>
-<ul>
-    <li><a href="{% url 'vigenere:cifrar' %}">Cifrar Mensaje</a></li>
-    <li><a href="{% url 'vigenere:descifrar' %}">Descifrar Mensaje</a></li>
-</ul>
+<!-- Incluir el archivo CSS para el módulo Vigenère -->
+<link rel="stylesheet" href="{% static 'css/vigenere_styles.css' %}">
+<div id="vigenere-container" class="container">
+    <!-- Título y descripción -->
+    <div class="row">
+      <div class="col-12 text-center">
+        <h1 id="vigenere-header">Bienvenido al módulo Vigenère</h1>
+        <p id="vigenere-lead" class="lead"> </p>
+      </div>
+    </div>
+</div>
+
+<div id="vigenere-container" class="container">
+  <div class="row mt-4">
+    <!-- Columna izquierda: Introducción Histórica -->
+    <div class="col-md-6">
+      <div id="vigenere-history-card" class="card shadow">
+        <div class="card-header">
+          Introducción Histórica
+        </div>
+        <div class="card-body">
+          <p>
+            El cifrado Vigenère es un método polialfabético que surgió en el siglo XVI y se conocía en su época como "el cifrado indescifrable". Durante mucho tiempo, se creyó que era imposible romperlo, lo que le otorgó una reputación de invulnerabilidad.
+          </p>
+          <p>
+            Con el tiempo, en el siglo XIX se descubrieron técnicas para vulnerarlo, aunque su estudio resultó fundamental para el desarrollo de la criptografía moderna. Vigenère utiliza una clave que se repite para transformar cada letra del mensaje original, haciendo que cada carácter se cifre de forma diferente.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Columna derecha: Acciones -->
+    <div class="col-md-6">
+      <div id="vigenere-actions-card" class="card shadow">
+        <div class="card-header">
+          Acciones
+        </div>
+        <div class="card-body">
+          <ul class="list-group">
+            <li class="list-group-item">
+              <a href="{% url 'vigenere:cifrar' %}" class="stretched-link">Cifrar Mensaje</a>
+            </li>
+            <li class="list-group-item">
+              <a href="{% url 'vigenere:descifrar' %}" class="stretched-link">Descifrar Mensaje</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}

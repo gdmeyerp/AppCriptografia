@@ -1,18 +1,61 @@
 {% extends "dashboard/index.html" %}
-
+{% load static %}
 
 {% block content %}
-<h2>Descifrar Mensaje</h2>
-<form method="POST">
-    {% csrf_token %}
-    <label for="mensaje_cifrado">Mensaje Cifrado:</label><br>
-    <textarea name="mensaje_cifrado" id="mensaje_cifrado" required></textarea><br>
-    <label for="clave">Clave:</label><br>
-    <input type="text" name="clave" id="clave" required><br><br>
-    <button type="submit">Descifrar</button>
-</form>
+<!-- Incluir el archivo CSS para el módulo Vigenère -->
+<link rel="stylesheet" href="{% static 'css/vigenere_styles.css' %}">
 
-{% if mensaje_descifrado %}
-    <p><strong>Mensaje Descifrado:</strong> {{ mensaje_descifrado }}</p>
-{% endif %}
+<div id="vigenere-container" class="container my-4">
+  <!-- Título y descripción -->
+  <div class="row">
+    <div class="col-12 text-center">
+      <h1 id="vigenere-header">Descifrar Mensaje</h1>
+    </div>
+  </div>
+</div>
+<div id="vigenere-container" class="container my-4">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="alert alert-info shadow-sm">
+        <h4 class="alert-heading">Instrucciones de uso</h4>
+        <ol class="mb-0">
+          <li>Introduce el <strong>mensaje cifrado</strong> en el campo de texto.</li>
+          <li>Escribe la <strong>clave</strong> utilizada para cifrar el mensaje.</li>
+          <li>Haz clic en el botón <strong>Descifrar</strong> para obtener el mensaje original.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="vigenere-container" class="container my-4">
+  <!-- Formulario de descifrado -->
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <div class="card shadow border-0 rounded-3">
+        <div class="card-body">
+          <form method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label for="mensaje_cifrado" class="form-label fw-bold">Mensaje Cifrado:</label>
+              <textarea name="mensaje_cifrado" id="mensaje_cifrado" class="form-control" rows="5" required placeholder="Ingresa el mensaje cifrado aquí"></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="clave" class="form-label fw-bold">Clave:</label>
+              <input type="text" name="clave" id="clave" class="form-control" required placeholder="Ejemplo: CLAVE">
+            </div>
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary px-4 py-2">Descifrar</button>
+            </div>
+          </form>
+
+          {% if mensaje_descifrado %}
+          <div class="mt-4 alert alert-success">
+            <strong>Mensaje Descifrado:</strong> {{ mensaje_descifrado }}
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 {% endblock %}
