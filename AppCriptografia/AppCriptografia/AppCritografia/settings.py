@@ -147,7 +147,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "vigenere/static"),
     os.path.join(BASE_DIR, "cifrado_musical/static"),
     os.path.join(BASE_DIR, "des/static"),
-    os.path.join(BASE_DIR, "aes/static"),
+    os.path.join(BASE_DIR, "aes/static")
 ]
 
 MEDIA_URL = '/media/'  # URL for accessing media files in the browser

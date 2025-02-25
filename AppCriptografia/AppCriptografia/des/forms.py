@@ -1,7 +1,12 @@
 from django import forms
 from .models import ImagenCifradaDES, ImagenDescifradaDES
 
+
 class ImageDESUploadForm(forms.ModelForm):
+    use_raster = forms.BooleanField(
+        required=False,
+        label="Cifrar pixeles en vez de archivo"
+        )  # A checkbox (True/False)
     clave = forms.CharField(
         max_length=8,
         required=True,
@@ -15,6 +20,10 @@ class ImageDESUploadForm(forms.ModelForm):
         }
 
 class CipheredImageDESUploadForm(forms.ModelForm):
+    use_raster = forms.BooleanField(
+        required=False,
+        label="Cifrar pixeles en vez de archivo"
+        )  # A checkbox (True/False)
     clave = forms.CharField(
         max_length=8,
         required=True,
