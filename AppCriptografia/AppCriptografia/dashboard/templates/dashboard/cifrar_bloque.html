@@ -1,0 +1,18 @@
+{% extends "dashboard/base.html" %}
+{% load static %}
+
+{% block content %}
+<h1 style="text-align: center; margin-bottom: 20px;">Selecciona un Método de Cifrado</h1>
+
+<div class="card-container">
+    {% for metodo in metodos %}
+    <div class="card">
+        <img src="{% static 'images/'|add:metodo.imagen %}" alt="{{ metodo.nombre }}" class="card-image"
+             onerror="this.src='{% static 'images/default.jpg' %}'">
+        <h3 class="card-title">{{ metodo.nombre }}</h3>
+        <p class="card-description">{{ metodo.descripcion }}</p>
+        <a href="{% url 'dashboard:cargar_modulo' metodo.slug %}" class="card-link">Ir al módulo</a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

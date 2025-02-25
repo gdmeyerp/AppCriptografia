@@ -81,6 +81,7 @@ def index_view(request):
     """Vista principal del dashboard que muestra los módulos disponibles"""
     modulos = [
         {'nombre': 'Cifrar Mensaje', 'slug': 'dashboard:cifrar_metodos'},  # Ruta actualizada
+        {'nombre': 'Cifrados de Bloque', 'slug': 'dashboard:cifrar_bloque'},  # Ruta actualizada
         {'nombre': 'Historial', 'slug': 'core:historial'},  # Ruta actualizada
     ]
     return render(request, 'dashboard/index.html', {'modulos': modulos})
@@ -98,10 +99,23 @@ def cifrar_metodos(request):
         {'nombre': 'Hill', 'slug': 'hill', 'imagen': 'hill.png', 'descripcion': 'Cifrado basado en transformaciones lineales.'},
         {'nombre': 'Permutación', 'slug': 'permutacion', 'imagen': 'permutacion.png', 'descripcion': 'Cifrado basado en matrices de permutación.'},
         {'nombre': 'Afín', 'slug': 'afin', 'imagen': 'afin.png', 'descripcion': 'Cifrado basado en combinaciones lineales de letras.'},
-        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': 'desplazamiento.png', 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
-        {'nombre': 'Cifrado Musical', 'slug': 'cifrado_musical', 'imagen': 'musical.jpg', 'descripcion': 'Cifra partituras musicales alterando sus notas.'},
-        {'nombre': 'Firma Digital de Documentos', 'slug': 'firmaDocumentos', 'imagen': None, 'descripcion': 'Firma digitalmente un docuemnto usando RSA.'},
-        {'nombre': 'ElGamal', 'slug': 'elGamal', 'imagen': None, 'descripcion': 'Cifrado empleando el Sistema Criptográfico ElGamal.'},
+        {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': 'desplazamiento.png', 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'}
+    ]
+
+    # Asignar una imagen y descripción por defecto si no están definidas
+    for metodo in metodos:
+        if 'imagen' not in metodo or not metodo['imagen']:
+            metodo['imagen'] = 'default.jpg'  # Imagen por defecto
+        if 'descripcion' not in metodo or not metodo['descripcion']:
+            metodo['descripcion'] = 'Sin descripción disponible.'  # Descripción por defecto
+
+    return render(request, 'dashboard/cifrar_metodos.html', {'metodos': metodos})
+
+
+@login_required
+def cifrar_bloque(request):
+    """Vista para mostrar los métodos de cifrado de bloque."""
+    metodos = [
         {'nombre': 'DES', 'slug': 'des', 'imagen': None, 'descripcion': 'Encripta imágenes usando DES.'},
         {'nombre': 'AES', 'slug': 'aes', 'imagen': None, 'descripcion': 'Encripta imágenes usando AES.'}
     ]
@@ -113,4 +127,4 @@ def cifrar_metodos(request):
         if 'descripcion' not in metodo or not metodo['descripcion']:
             metodo['descripcion'] = 'Sin descripción disponible.'  # Descripción por defecto
 
-    return render(request, 'dashboard/cifrar_metodos.html', {'metodos': metodos})
+    return render(request, 'dashboard/cifrar_bloque.html', {'metodos': metodos})
