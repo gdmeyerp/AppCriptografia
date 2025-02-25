@@ -3,12 +3,12 @@
 
 /* --- Variables CSS --- */
 :root {
-  --primary-color: #007bff;
+  --primary-color: hsl(211, 100%, 50%);
   --primary-dark: #0056b3;
   --secondary-color: #6c757d;
   --background: #f4f4f9;
   --text-color: #333;
-  --header-bg: #333;
+  --header-bg: #0e2d4e;
   --header-text: #fff;
   --aside-bg: #eaeaea;
   --link-color: #007bff;
@@ -16,6 +16,24 @@
   --card-border: #ddd;
   --card-shadow: rgba(0, 0, 0, 0.1);
   --card-shadow-hover: rgba(0, 0, 0, 0.2);
+
+  /* Gradientes neon independientes */
+  --button-neon-gradient: linear-gradient(45deg, var(--primary-color), var(--link-hover), var(--primary-dark), var(--link-hover), var(--primary-color));
+  --card-neon-gradient: linear-gradient(45deg, #5b8cc060, #0057b325, #416c9b63); /* Ejemplo: tonos magenta para tarjetas */
+}
+
+/* --- Animación para botones y enlaces --- */
+@keyframes neonGlow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
+}
+
+/* --- Animación para tarjetas --- */
+@keyframes cardNeonGlow {
+  0% { background-position: 0% 0%; }
+  50% { background-position: 100% 0%; }
+  100% { background-position: 0% 0%; }
 }
 
 /* --- Estilos generales --- */
@@ -45,15 +63,37 @@ header .header-left h1 {
 }
 
 header .header-right a {
+  position: relative;
   color: var(--header-text);
   text-decoration: none;
   margin: 0 15px;
   font-size: 1rem;
-  transition: color 0.3s ease;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+header .header-right a::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--button-neon-gradient);
+  background-size: 400%;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 header .header-right a:hover {
-  color: #ff5757;
+  transform: scale(1.05);
+}
+
+header .header-right a:hover::before {
+  opacity: 1;
+  animation: neonGlow 2s linear infinite;
 }
 
 /* --- Contenedores: aside y main --- */
@@ -71,18 +111,39 @@ aside {
 }
 
 aside a {
+  position: relative;
   display: block;
   margin-bottom: 10px;
   padding: 10px;
   color: var(--link-color);
   text-decoration: none;
   border-radius: 5px;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+aside a::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--button-neon-gradient);
+  background-size: 400%;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 aside a:hover {
-  background-color: var(--link-color);
-  color: #fff;
+  transform: scale(1.05);
+}
+
+aside a:hover::before {
+  opacity: 1;
+  animation: neonGlow 2s linear infinite;
 }
 
 main {
@@ -104,11 +165,16 @@ footer {
 footer a {
   color: var(--header-text);
   text-decoration: underline;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--link-hover);
+  text-shadow: 0 0 8px var(--link-hover);
 }
 
 /* --- Tarjetas / Card Container --- */
 .card-container {
-  /* Utilizamos grid para un diseño responsivo */
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -116,8 +182,10 @@ footer a {
   margin-top: 20px;
 }
 
-/* Estilos generales para tarjetas */
+/* --- Estilos para tarjetas con efecto neon independiente --- */
 .card {
+  position: relative;
+  overflow: hidden;
   background-color: #fff;
   border: 1px solid var(--card-border);
   border-radius: 10px;
@@ -127,9 +195,29 @@ footer a {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+.card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--card-neon-gradient);
+  background-size: 400%;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
+}
+
 .card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 10px var(--card-shadow-hover);
+}
+
+.card:hover::before {
+  opacity: 1;
+  animation: cardNeonGlow 3s linear infinite;
 }
 
 .card img {
@@ -141,6 +229,11 @@ footer a {
   font-size: 1.2rem;
   margin: 15px 0;
   color: var(--text-color);
+  transition: text-shadow 0.3s ease;
+}
+
+.card-title:hover {
+  text-shadow: 0 0 8px var(--link-hover);
 }
 
 .card-description {
@@ -150,7 +243,9 @@ footer a {
   text-align: center;
 }
 
+/* --- Botón dentro de la tarjeta (usa la animación de botones) --- */
 .card-link {
+  position: relative;
   display: inline-block;
   background-color: var(--primary-color);
   color: #fff;
@@ -158,11 +253,32 @@ footer a {
   padding: 10px 15px;
   border-radius: 5px;
   font-weight: bold;
-  transition: background-color 0.3s ease;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+}
+
+.card-link::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: var(--button-neon-gradient);
+  background-size: 400%;
+  filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: -1;
 }
 
 .card-link:hover {
-  background-color: var(--primary-dark);
+  transform: scale(1.05);
+}
+
+.card-link:hover::before {
+  opacity: 1;
+  animation: neonGlow 2s linear infinite;
 }
 
 /* --- Lista de acciones --- */

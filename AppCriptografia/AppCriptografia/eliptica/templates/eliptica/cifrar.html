@@ -1,0 +1,136 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
+
+<div class="container-fluid mt-4">  <!-- Usar container-fluid en vez de container para mayor flexibilidad -->
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h1 class="mb-3">Cifrado con Curvas Elípticas</h1>
+      <p class="lead">Introduce la clave pública y el mensaje a cifrar.</p>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-4">  <!-- Usar container-fluid en vez de container para mayor flexibilidad -->
+
+  <!-- Botón para generar claves ECC -->
+  <div class="text-center">
+    <button id="botonGenerarClaves" class="btn btn-info w-50 mt-3">
+      <i class="fas fa-key"></i> Generar Claves ECC
+    </button>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="card shadow">
+        <div class="card-header bg-success text-white">
+          <h2 class="h5 mb-0">Ingresar Datos para Cifrar</h2>
+        </div>
+        <div class="card-body">
+          <form id="encryptForm" method="POST">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="public_key" class="form-label">Clave Pública (PEM)</label>
+                <textarea class="form-control" id="public_key" name="public_key" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+                <label for="data" class="form-label">Texto a Cifrar</label>
+                <textarea class="form-control" id="data" name="data" rows="3" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-success w-100">
+                <i class="fas fa-lock"></i> Cifrar
+            </button>
+        </form>
+        
+        </div>
+      </div>
+
+      <div id="result-container" class="card shadow mt-4 d-none">
+        <div class="card-header bg-dark text-white">
+          <h2 class="h5 mb-0">Resultado del Cifrado</h2>
+        </div>
+        <div class="card-body">
+          <p><strong>Clave Pública Efímera:</strong></p>
+          <textarea class="form-control" id="ephemeral_public_pem" rows="4"></textarea>
+
+          <p class="mt-3"><strong>IV:</strong></p>
+          <textarea class="form-control" id="iv" rows="1"></textarea>
+
+          <p class="mt-3"><strong>Etiqueta de Autenticación (Tag):</strong></p>
+          <textarea class="form-control" id="tag" rows="1"></textarea>
+
+          <p class="mt-3"><strong>Texto Cifrado:</strong></p>
+          <textarea class="form-control" id="ciphertext" rows="4"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Función para generar claves y actualizar el formulario
+  document.getElementById("botonGenerarClaves").addEventListener("click", async function () {
+    let respuesta = await fetch("/modulo/eliptica/generar-claves/");
+    if (respuesta.ok) {
+      let resultado = await respuesta.json();
+      document.getElementById("public_key").value = resultado.clave_publica;
+      alert("¡Claves generadas correctamente!");
+    } else {
+      alert("Error al generar claves.");
+    }
+  });
+
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("encryptForm");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      let clavePublica = document.getElementById("public_key").value.trim();
+      let mensaje = document.getElementById("data").value.trim();
+
+      if (!clavePublica.startsWith("-----BEGIN PUBLIC KEY-----")) {
+        alert("La clave pública debe estar en formato PEM.");
+        return;
+      }
+
+      let formData = new FormData();
+      formData.append("clave_publica", clavePublica);
+      formData.append("mensaje", mensaje);
+
+      try {
+        let response = await fetch("{{ request.path }}", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+          }
+        });
+
+        if (!response.ok) {
+          let errorText = await response.text();
+          console.error("Error en el cifrado:", errorText);
+          alert("Error en el cifrado: " + errorText);
+          return;
+        }
+
+        let result = await response.json();
+        console.log("Respuesta JSON recibida:", result);
+
+        document.getElementById("ephemeral_public_pem").value = result.clave_efimera_pem || "Error";
+        document.getElementById("iv").value = result.iv || "Error";
+        document.getElementById("tag").value = result.etiqueta || "Error";
+        document.getElementById("ciphertext").value = result.mensaje_cifrado || "Error";
+
+        document.getElementById("result-container").classList.remove("d-none");
+
+      } catch (error) {
+        console.error("Error en la solicitud:", error);
+        alert("Hubo un problema en la conexión.");
+      }
+    });
+  });
+</script>
+
+{% endblock %}

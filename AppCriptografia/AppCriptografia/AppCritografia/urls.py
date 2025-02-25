@@ -20,7 +20,8 @@ urlpatterns = [
     path('firmaDocumentos/', include('firmaDocumentos.urls', namespace='firmaDocumentos')),  # Usa namespace en firmaDocumentos
     path('elGamal/', include('elGamal.urls', namespace='elGamal')),  # Usa namespace en elGamal
     path('des/', include('des.urls', namespace='des')),  # Usa namespace en des
-    path('aes/', include('aes.urls', namespace='aes'))  # Usa namespace en aes
+    path('aes/', include('aes.urls', namespace='aes')),  # Usa namespace en aes
+    path('modulo/eliptica/', include('eliptica.urls', namespace='eliptica')),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

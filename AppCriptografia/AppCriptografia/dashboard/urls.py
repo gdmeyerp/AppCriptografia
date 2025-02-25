@@ -22,6 +22,7 @@ urlpatterns = [
     path('modulo/firmaDocumentos/', include('firmaDocumentos.urls', namespace='firmaDocumentos')),
     path('modulo/elGamal/', include('elGamal.urls', namespace='elGamal')),
     path('modulo/des/', include('des.urls', namespace='des')), # Incluye las rutas del módulo DES
-    path('modulo/aes/', include('aes.urls', namespace='aes')) # Incluye las rutas del módulo AES
+    path('modulo/aes/', include('aes.urls', namespace='aes')), # Incluye las rutas del módulo AES
+    path('modulo/eliptica/', include('eliptica.urls', namespace='eliptica')),  # DEBE COINCIDIR CON EL app_name
 
 ]

@@ -55,7 +55,8 @@ INSTALLED_APPS = [
     'firmaDocumentos',
     'elGamal',
     'des',
-    'aes'
+    'aes',
+    'eliptica',
 ]
 
 MIDDLEWARE = [
