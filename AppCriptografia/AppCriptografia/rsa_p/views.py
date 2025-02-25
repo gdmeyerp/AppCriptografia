@@ -7,7 +7,7 @@ from django.contrib import messages
 @login_required
 def index(request):
     """Vista principal del módulo RSA"""
-    return render(request, 'rsa/index.html')
+    return render(request, 'rsa_p/index.html')
 
 @login_required
 def cifrar_view(request):
@@ -31,7 +31,7 @@ def cifrar_view(request):
             except Exception as e:
                 messages.error(request, f"Error al cifrar el mensaje: {e}")
 
-    return render(request, "rsa/cifrar.html", {
+    return render(request, "rsa_p/cifrar.html", {
         "mensaje_cifrado": mensaje_cifrado,
         "clave_publica": clave_publica,
         "clave_privada": clave_privada,
@@ -59,14 +59,14 @@ def descifrar_view(request):
             except Exception as e:
                 messages.error(request, f"Error al descifrar el mensaje: {e}")
 
-    return render(request, "rsa/descifrar.html", {"mensaje_descifrado": mensaje_descifrado})
+    return render(request, "rsa_p/descifrar.html", {"mensaje_descifrado": mensaje_descifrado})
 
 @login_required
 def historial_view(request):
     """Vista para mostrar el historial de cifrado y descifrado con RSA"""
     cifrados = RsaCifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
     descifrados = RsaDescifrado.objects.filter(usuario=request.user).order_by('-fecha_creacion')
-    return render(request, 'rsa/historial.html', {
+    return render(request, 'rsa_p/historial.html', {
         'cifrados': cifrados,
         'descifrados': descifrados,
     })

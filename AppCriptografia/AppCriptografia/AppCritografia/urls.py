@@ -7,18 +7,19 @@ urlpatterns = [
     path('', include('core.urls', namespace='core')),  # Usa namespace correctamente
     path('dashboard/', include('dashboard.urls', namespace='dashboard')),  # Usa namespace en dashboard
     path('vigenere/', include('vigenere.urls', namespace='vigenere')),  # Usa namespace en vigenere
-    path('modulo/rsa/', include('rsa.urls', namespace='rsa')),  # Incluye el módulo RSA
+    path('rsa_p/', include('rsa_p.urls', namespace='rsa_p')),  # Incluye el módulo RSA
     path('sustitucion/', include('sustitucion.urls', namespace='sustitucion')),  # Usa namespace en sustitucion
     path('multiplicativo/', include('multiplicativo.urls', namespace='multiplicativo')),  # Usa namespace en multiplicativo
     path('hill/', include('hill.urls', namespace='hill')),  # Usa namespace en hill
     path('permutacion/', include('permutacion.urls', namespace='permutacion')),  # Usa namespace en permutacion
-    path('indice-coincidencia/', include('indiceCoincidencia.urls')), 
+    path('indice-coincidencia/', include('indiceCoincidencia.urls')),
 
     path('AnalisisBrauer/', include('AnalisisBrauer.urls', namespace='AnalisisBrauer')),  # Usa namespace en permutacion
     path('afin/', include('afin.urls', namespace='afin')),  # Usa namespace en afín
     path('desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento')),  # Usa namespace en desplazamiento
     path('cifrado_musical/', include('cifrado_musical.urls')),
     path('firmaDocumentos/', include('firmaDocumentos.urls', namespace='firmaDocumentos')),  # Usa namespace en firmaDocumentos
+    path('elGamal/', include('elGamal.urls', namespace='elGamal')),  # Usa namespace en elGamal
     path('des/', include('des.urls', namespace='des')),  # Usa namespace en des
     path('aes/', include('aes.urls', namespace='aes'))  # Usa namespace en aes
 ]

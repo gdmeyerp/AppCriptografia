@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     'core',  # Módulo de usuarios
     'dashboard',  # Módulo del dashboard
     'vigenere',
-    'rsa',
+    'rsa_p',
     'sustitucion',
     'multiplicativo',
     'hill',
@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'desplazamiento',
     'cifrado_musical',
     'firmaDocumentos',
+    'elGamal',
     'des',
     'aes'
 ]
@@ -142,8 +143,9 @@ STATIC_ROOT = BASE_DIR / "staticfiles"
 STATICFILES_DIRS = [
     BASE_DIR / 'static',  # Carpeta global para archivos estáticos
 
-    #os.path.join(BASE_DIR, "dashboard/static"),
-    #os.path.join(BASE_DIR, "vigenere/static"),
+    os.path.join(BASE_DIR, "dashboard/static"),
+    os.path.join(BASE_DIR, "vigenere/static"),
+    os.path.join(BASE_DIR, "cifrado_musical/static"),
 ]
 
 MEDIA_URL = '/media/'  # URL for accessing media files in the browser

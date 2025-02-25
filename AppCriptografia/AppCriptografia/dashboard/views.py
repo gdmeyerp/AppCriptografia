@@ -69,7 +69,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento', "firmaDocumentos", 'des', 'aes']  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento', "firmaDocumentos", "elGamal", 'des', 'aes']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -92,7 +92,7 @@ def cifrar_metodos(request):
     metodos = [
         {'nombre': 'Vigenère', 'slug': 'vigenere', 'imagen': 'vigenere.png', 'descripcion': 'Método clásico basado en una clave repetitiva.'},
         #{'nombre': 'César', 'slug': 'cesar', 'imagen': 'cesar.jpg', 'descripcion': 'Desplaza las letras un número fijo.'},
-        {'nombre': 'RSA', 'slug': 'rsa', 'imagen': 'rsa.png', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
+        {'nombre': 'RSA', 'slug': 'rsa_p', 'imagen': 'rsa.png', 'descripcion': 'Cifrado asimétrico basado en claves pública y privada.'},
         {'nombre': 'Multiplicativo', 'slug': 'multiplicativo', 'imagen': 'multiplicativo.png', 'descripcion': 'Cifra mensajes multiplicando por una clave.'},
         {'nombre': 'Sustitucion', 'slug': 'sustitucion', 'imagen': 'sustitucion.png', 'descripcion': 'Cifra mensajes sustituyendo cada elemento de acuerdo a una permutacion.'},
         {'nombre': 'Hill', 'slug': 'hill', 'imagen': 'hill.png', 'descripcion': 'Cifrado basado en transformaciones lineales.'},
@@ -101,6 +101,7 @@ def cifrar_metodos(request):
         {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': 'desplazamiento.png', 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
         {'nombre': 'Cifrado Musical', 'slug': 'cifrado_musical', 'imagen': 'musical.jpg', 'descripcion': 'Cifra partituras musicales alterando sus notas.'},
         {'nombre': 'Firma Digital de Documentos', 'slug': 'firmaDocumentos', 'imagen': None, 'descripcion': 'Firma digitalmente un docuemnto usando RSA.'},
+        {'nombre': 'ElGamal', 'slug': 'elGamal', 'imagen': None, 'descripcion': 'Cifrado empleando el Sistema Criptográfico ElGamal.'},
         {'nombre': 'DES', 'slug': 'des', 'imagen': None, 'descripcion': 'Encripta imágenes usando DES.'},
         {'nombre': 'AES', 'slug': 'aes', 'imagen': None, 'descripcion': 'Encripta imágenes usando AES.'}
     ]

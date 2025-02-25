@@ -2,7 +2,7 @@
 
 {% block content %}
 <h1>Cifrado RSA</h1>
-<form method="post" action="{% url 'rsa:cifrar' %}">
+<form method="post" action="{% url 'rsa_p:cifrar' %}">
     {% csrf_token %}
     <label for="mensaje">Mensaje a cifrar:</label>
     <textarea id="mensaje" name="mensaje" rows="4" required></textarea>

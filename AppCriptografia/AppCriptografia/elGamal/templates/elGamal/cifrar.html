@@ -1,0 +1,20 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<h2>Cifrar Mensaje</h2>
+<form method="POST" action="{% url 'elGamal:cifrar' %}">
+    {% csrf_token %}
+    <label for="mensaje">Mensaje:</label><br>
+    <textarea name="mensaje" id="mensaje" required></textarea><br>
+    <button type="submit">Cifrar</button>
+</form>
+
+{% if mensaje_cifrado1 and mensaje_cifrado2 %}
+    <p style="word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap; word-break: break-all;">
+        <strong>Mensaje Cifrado 1:</strong> {{ mensaje_cifrado1 }}
+    </p>
+    <p style="word-wrap: break-word; overflow-wrap: break-word; white-space: pre-wrap; word-break: break-all;">
+        <strong>Mensaje Cifrado 2:</strong> {{ mensaje_cifrado2 }}
+    </p>
+{% endif %}
+{% endblock %}
