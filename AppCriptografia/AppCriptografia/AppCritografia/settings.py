@@ -53,6 +53,8 @@ INSTALLED_APPS = [
     'desplazamiento',
     'cifrado_musical',
     'firmaDocumentos',
+    'des',
+    'aes'
 ]
 
 MIDDLEWARE = [
@@ -144,6 +146,7 @@ STATICFILES_DIRS = [
     #os.path.join(BASE_DIR, "vigenere/static"),
 ]
 
+MEDIA_URL = '/media/'  # URL for accessing media files in the browser
 
 MEDIA_ROOT = BASE_DIR / 'media'
 
@@ -151,6 +154,7 @@ MEDIAFILES_DIRS = [
     os.path.join(BASE_DIR, "media/cifrados"),
     os.path.join(BASE_DIR, "media/descifrados"),
 ]
+
 
 
 

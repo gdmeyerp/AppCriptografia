@@ -1,0 +1,11 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<h1>Bienvenido al módulo de encriptación con DES</h1>
+<p>Selecciona una acción:</p>
+<div class="text-center">
+    <a href="{% url 'des:cifrar' %}" class="btn btn-primary">Cifrar Imagen</a>
+    <a href="{% url 'des:descifrar' %}" class="btn btn-success">Descifrar Imagen</a>
+    <a href="{% url 'des:gallery' %}" class="btn btn-secondary">Galería de Imágenes</a>
+</div>
+{% endblock %}

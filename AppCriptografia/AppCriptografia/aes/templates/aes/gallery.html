@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería</title>
+</head>
+<body>
+    <h2>Galería de Imágenes</h2>
+
+    {% if uploaded_original_images or uploaded_encrypted_images %}
+        <h3>Imágenes subidas:</h3>
+        {% for image in uploaded_original_images %}
+            <img src="{{ image.image.url }}" width="300">
+        {% empty %}
+            <p>No se han subido imágenes a encriptar aún.</p>
+        {% endfor %}
+
+        <h3>Imágenes encriptadas subidas:</h3>
+        {% for image in uploaded_encrypted_images %}
+            <img src="{{ image.image.url }}" width="300">
+        {% empty %}
+            <p>No se han subido imágenes encriptadas aún.</p>
+        {% endfor %}
+    {% else %}
+        <p>No se ha subido ninguna imagen.</p>
+    {% endif %}
+    
+</body>
+</html>

@@ -14,6 +14,9 @@ from afin.models import AfinCifrado, AfinDescifrado
 from desplazamiento.models import DesplazamientoCifrado, DesplazamientoDescifrado
 from cifrado_musical.models import PartituraCifrada, PartituraDescifrada
 
+from des.models import ImagenCifradaDES, ImagenDescifradaDES
+#AES
+
 
 @login_required
 def historial_dinamico(request):
@@ -66,7 +69,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento', "firmaDocumentos"]  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento', "firmaDocumentos", 'des', 'aes']  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -98,6 +101,8 @@ def cifrar_metodos(request):
         {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': 'desplazamiento.png', 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
         {'nombre': 'Cifrado Musical', 'slug': 'cifrado_musical', 'imagen': 'musical.jpg', 'descripcion': 'Cifra partituras musicales alterando sus notas.'},
         {'nombre': 'Firma Digital de Documentos', 'slug': 'firmaDocumentos', 'imagen': None, 'descripcion': 'Firma digitalmente un docuemnto usando RSA.'},
+        {'nombre': 'DES', 'slug': 'des', 'imagen': None, 'descripcion': 'Encripta imágenes usando DES.'},
+        {'nombre': 'AES', 'slug': 'aes', 'imagen': None, 'descripcion': 'Encripta imágenes usando AES.'}
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas

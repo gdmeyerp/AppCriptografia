@@ -19,6 +19,8 @@ urlpatterns = [
     path('desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento')),  # Usa namespace en desplazamiento
     path('cifrado_musical/', include('cifrado_musical.urls')),
     path('firmaDocumentos/', include('firmaDocumentos.urls', namespace='firmaDocumentos')),  # Usa namespace en firmaDocumentos
+    path('des/', include('des.urls', namespace='des')),  # Usa namespace en des
+    path('aes/', include('aes.urls', namespace='aes'))  # Usa namespace en aes
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

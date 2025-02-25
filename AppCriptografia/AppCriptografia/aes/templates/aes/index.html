@@ -1,0 +1,11 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<h1>Bienvenido al módulo de encriptación con AES</h1>
+<p>Selecciona una acción:</p>
+<div class="text-center">
+    <a href="{% url 'aes:cifrar' %}" class="btn btn-primary">Cifrar Imagen</a>
+    <a href="{% url 'aes:descifrar' %}" class="btn btn-success">Descifrar Imagen</a>
+    <a href="{% url 'aes:gallery' %}" class="btn btn-secondary">Galería de Imágenes</a>
+</div>
+{% endblock %}

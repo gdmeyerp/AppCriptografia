@@ -1,0 +1,21 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+  <h1>Cargar Imagen a Cifrar</h1> 
+
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %} 
+    {{ encrypt_image_form.as_p }} 
+    <button type= "submit"> Subir y Encriptar</button> 
+  </form>
+  
+  {% if original_image_url %}
+    <h3>Imagen Original</h3>
+    <img src="{{ original_image_url }}" width="300">
+
+    <h3>Imagen Cifrada</h3>
+    <img src="{{ encrypted_image_url }}" width="300">
+    <p><strong>Clave usada:</strong> {{ applied_des_key }}</p>
+  {% endif %}
+{% endblock %}
