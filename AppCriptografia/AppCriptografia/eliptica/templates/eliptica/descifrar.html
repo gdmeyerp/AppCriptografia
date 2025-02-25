@@ -1,0 +1,110 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<style> 
+  /* Ajusta el tamaño del formulario en el descifrado */
+#formulario-descifrar {
+    max-width: 80%; /* Usa el 80% del ancho disponible */
+    margin: auto; /* Centra el formulario */
+}
+
+/* Ajusta los campos para que sean más anchos */
+#formulario-descifrar textarea,
+#formulario-descifrar input {
+    width: 100%; /* Que ocupen todo el ancho disponible */
+    font-size: 1.1em; /* Aumenta el tamaño de la fuente */
+}
+
+</style>
+
+<div class="container-fluid mt-4">  <!-- Usar container-fluid en vez de container para mayor flexibilidad -->
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h1 class="mb-3">Descifrado con Curvas Elípticas</h1>
+      <p class="lead">Introduce la clave privada y los datos cifrados.</p>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid mt-4">  <!-- Usar container-fluid en vez de container para mayor flexibilidad -->
+  <div class="row">
+    <div class="col-md-10 offset-md-2">
+      <div class="card shadow">
+        <div class="card-header bg-warning text-white">
+          <h2 class="h5 mb-0">Ingresar Datos para Descifrar</h2>
+        </div>
+        <div class="card-body">
+          <form id="decryptForm" method="POST">
+            {% csrf_token %}
+            <div class="bg-3">
+              <label for="private_key" class="form-label">Clave Privada (PEM)</label>
+              <textarea class="form-control" id="private_key" name="private_key" rows="5" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="ephemeral_key" class="form-label">Clave Pública Efímera</label>
+              <textarea class="form-control" id="ephemeral_key" name="ephemeral_key" rows="4" required></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="iv" class="form-label">IV</label>
+              <input type="text" class="form-control" id="iv" name="iv" required>
+            </div>
+            <div class="mb-3">
+              <label for="tag" class="form-label">Etiqueta de Autenticación (Tag)</label>
+              <input type="text" class="form-control" id="tag" name="tag" required>
+            </div>
+            <div class="mb-3">
+              <label for="ciphertext" class="form-label">Texto Cifrado</label>
+              <textarea class="form-control" id="ciphertext" name="ciphertext" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-warning w-100">
+              <i class="fas fa-unlock"></i> Descifrar
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <div id="result-container" class="card shadow mt-4 d-none">
+        <div class="card-header bg-dark text-white">
+          <h2 class="h5 mb-0">Resultado del Descifrado</h2>
+        </div>
+        <div class="card-body">
+          <p><strong>Texto Descifrado:</strong></p>
+          <textarea class="form-control" id="plaintext" rows="3" readonly></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("decryptForm");
+
+    form.addEventListener("submit", async function (event) {
+      event.preventDefault();
+
+      let formData = new FormData(form);
+
+      let response = await fetch("{{ request.path }}", {
+        method: "POST",
+        body: formData,
+        headers: {
+          "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value
+        }
+      });
+
+      if (!response.ok) {
+        let errorText = await response.text();
+        alert("Error en el descifrado: " + errorText);
+        return;
+      }
+
+      let result = await response.text();
+      document.getElementById("plaintext").value = result;
+      document.getElementById("result-container").classList.remove("d-none");
+    });
+  });
+</script>
+
+{% endblock %}

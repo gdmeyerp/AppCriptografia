@@ -1,0 +1,52 @@
+{% extends "dashboard/index.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+  <!-- Título principal y descripción introductoria -->
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <h1 class="mb-3">Módulo de Cifrado de Curva Elíptica</h1>
+      <p class="lead">Protege y transforma tus datos mediante criptografía basada en curvas elípticas.</p>
+    </div>
+  </div>
+
+  <!-- Sección explicativa e histórica -->
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+          <h2 class="h4 mb-0">¿Qué es el Cifrado de Curva Elíptica?</h2>
+        </div>
+        <div class="card-body">
+          <p>
+            El cifrado de curva elíptica utiliza las propiedades matemáticas de las curvas sobre campos finitos para generar claves seguras y eficientes. Permite cifrar y descifrar datos utilizando claves de menor tamaño, lo que mejora el rendimiento y reduce el consumo de recursos.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sección de instrucciones y acciones -->
+  <div class="row mb-4">
+    <div class="col-12 text-center">
+      <p>Selecciona una acción:</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12 d-flex justify-content-center">
+      <a href="{% url 'eliptica:generar_claves' %}" class="btn btn-primary mx-2">
+        <i class="fas fa-key"></i> Generar Claves
+      </a>
+      <a href="{% url 'eliptica:cifrar' %}" class="btn btn-success mx-2">
+        <i class="fas fa-lock"></i> Cifrar Datos
+      </a>
+      <a href="{% url 'eliptica:descifrar' %}" class="btn btn-warning mx-2">
+        <i class="fas fa-unlock"></i> Descifrar Datos
+      </a>
+
+    </div>
+  </div>
+</div>
+{% endblock %}
