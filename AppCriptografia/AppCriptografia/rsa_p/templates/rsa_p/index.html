@@ -1,0 +1,10 @@
+{% extends "dashboard/index.html" %}
+
+{% block content %}
+<h1 style="text-align: center;">Modulo RSA</h1>
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'rsa_p:cifrar' %}" style="display: inline-block; padding: 10px 20px; margin: 10px; background-color: #4CAF50; color: white; text-decoration: none; border-radius: 5px;">Cifrar Mensaje</a>
+    <a href="{% url 'rsa_p:descifrar' %}" style="display: inline-block; padding: 10px 20px; margin: 10px; background-color: #f44336; color: white; text-decoration: none; border-radius: 5px;">Descifrar Mensaje</a>
+    <a href="{% url 'rsa_p:historial' %}" style="display: inline-block; padding: 10px 20px; margin: 10px; background-color: #2196F3; color: white; text-decoration: none; border-radius: 5px;">Ver Historial</a>
+</div>
+{% endblock %}
