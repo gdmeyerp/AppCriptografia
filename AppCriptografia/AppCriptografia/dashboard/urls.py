@@ -19,5 +19,6 @@ urlpatterns = [
     path('modulo/desplazamiento/', include('desplazamiento.urls', namespace='desplazamiento')), # Incluye las rutas del módulo Desplazamiento
     path('modulo/cifrado_musical/', include('cifrado_musical.urls', namespace='cifrado_musical')),
     path('modulo/firmaDocumentos/', include('firmaDocumentos.urls', namespace='firmaDocumentos')),
+    path('modulo/elGamal/', include('elGamal.urls', namespace='elGamal')),
 
 ]

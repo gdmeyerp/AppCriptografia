@@ -66,7 +66,7 @@ def historial_dinamico(request):
 @login_required
 def cargar_modulo(request, modulo):
     """Carga dinámicamente los módulos dentro del dashboard"""
-    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento', "firmaDocumentos"]  # Lista de módulos admitidos
+    modulos_disponibles = ['vigenere', 'rsa', 'cesar','cifrado_musical', 'sustitucion', 'multiplicativo','hill','permutacion', 'afin', 'desplazamiento', "firmaDocumentos", "elGamal"]  # Lista de módulos admitidos
     if modulo in modulos_disponibles:
         return redirect(f'{modulo}:index')  # Redirige dinámicamente al índice del módulo
     else:
@@ -98,6 +98,7 @@ def cifrar_metodos(request):
         {'nombre': 'Desplazamiento', 'slug': 'desplazamiento', 'imagen': 'desplazamiento.png', 'descripcion': 'Cifra mensajes desplazando las letras por un número fijo.'},
         {'nombre': 'Cifrado Musical', 'slug': 'cifrado_musical', 'imagen': 'musical.jpg', 'descripcion': 'Cifra partituras musicales alterando sus notas.'},
         {'nombre': 'Firma Digital de Documentos', 'slug': 'firmaDocumentos', 'imagen': None, 'descripcion': 'Firma digitalmente un docuemnto usando RSA.'},
+        {'nombre': 'ElGamal', 'slug': 'elGamal', 'imagen': None, 'descripcion': 'Cifrado empleando el Sistema Criptográfico ElGamal.'},
     ]
 
     # Asignar una imagen y descripción por defecto si no están definidas

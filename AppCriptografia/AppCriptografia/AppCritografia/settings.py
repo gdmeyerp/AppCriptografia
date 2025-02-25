@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'desplazamiento',
     'cifrado_musical',
     'firmaDocumentos',
+    'elGamal',
 ]
 
 MIDDLEWARE = [
